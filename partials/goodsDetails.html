@@ -1,0 +1,444 @@
+<!--
+	by youjie
+	商品详情页
+-->
+<!--
+	youjie
+	首页面
+	2015-6-19
+-->
+<style type="text/css">
+	#slider img {
+		height: 250px;
+	}
+	.states{
+		height: 40%;
+		width: 20%;
+		padding: 12px;
+		float: left;
+	}
+	.stateSum1{
+		border-bottom: 1px solid #C8C7CC;
+	}
+	.stateBtn{
+		
+	}
+	.stateSum2{
+		border-bottom: 1px solid #C8C7CC;
+	}
+	.textPart{
+		height: 40%;
+		width: 80%;
+		padding: 10px;
+		font-size: 16px;
+		float: right;
+	} 
+	.textPart2{
+		margin-left: 10px;
+		text-align:center;
+		color: #D43047;
+	}
+	.shares{
+		font-size: 14px;
+		line-height: 20px;
+		padding-left: 10px;
+		padding-bottom: 10px;
+		padding-right: 10px;
+	}
+	.manySum{
+		font-size: 14px;
+		line-height: 20px;
+	}
+	.load{
+		
+	}
+	.loadingLong {
+        width: 90%;
+        height: 8px;
+        border-radius: 10px;
+        border: 1px solid #666;
+        /*margin-top: 5px;*/
+        margin-left: 5%;
+        margin-bottom:5px;
+        box-shadow: 2px 2px 3px 1px #666;
+    }
+    .progressLong {
+        width: 0;
+        height: 100%;
+        background-color: #666;
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#d43047), color-stop(1, #d43047), to(#d43047));
+        border-radius: 10px;
+    }
+    .message{
+    		height: 50%;
+    		padding-top: 10px;
+    }
+    .people ul li img{
+    		display: block;
+    		border-radius: 20px;
+    }
+    .mui-backdrop {
+				position:fixed;
+				z-index:998;
+				top:0;
+				right:0;
+				bottom:180px;
+				left:0;
+				background-color:rgba(0,0,0,.3)
+			}
+			.center{
+				display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+				display: -moz-box; /* OLD: Firefox (can be buggy) */
+				display: -ms-flexbox; /* OLD: IE 10 */
+				display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+				display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			 	-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+			}
+</style>
+		<div id="scrolls" class="mui-popover" style="height: 200px;width: 300px;">
+			<div class="mui-popover-arrow"></div>
+			<div class=" mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul>
+			            <li class="mui-table-view-cell" style="width: 33%;float: left;">10000001</li>
+			           
+	            	   </ul>
+	            </div>
+            </div>
+        </div>
+	
+<!--头部导航文字-->
+<div class="mui-content" style="margin-bottom: 50px;">
+	<!--轮播-->
+	<div id="slider" class="mui-slider">
+		<div class="mui-slider-group mui-slider-loop">
+			<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img ng-src="{{details.imagesOne}}">
+				</a>
+			</div>
+			<div class="mui-slider-item">
+				<a href="#">
+					<img ng-src="{{details.imagesOne}}">
+				</a>
+			</div>
+			<div class="mui-slider-item">
+				<a href="#">
+					<img ng-src="{{details.imagesTwo}}">
+				</a>
+			</div>
+			<div class="mui-slider-item">
+				<a href="#">
+					<img ng-src="{{details.imagesThree}}">
+				</a>
+			</div>
+			<!--<div class="mui-slider-item">
+				<a href="#">
+					<img ng-src="{{details.imagesFore}}">
+				</a>
+			</div>-->
+			<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+			<div class="mui-slider-item mui-slider-item-duplicate">
+				<a href="#">
+					<img ng-src="{{details.imagesOne}}">
+				</a>
+			</div>
+		</div>
+		<div class="mui-slider-indicator">
+			<div class="mui-indicator mui-active"></div>
+			<div class="mui-indicator"></div>
+			<!--<div class="mui-indicator"></div>-->
+			<div class="mui-indicator"></div>
+		</div>
+	</div>
+	<!--轮播-->
+	<div>
+		<ul class="mui-table-view" >
+			<!--进行中详情begin-->
+			<li ng-show="JinXingZhong" id="" class="stateSum1" style="height: 110px;">
+				<div class="states">
+					<input  type="button" value="进行中" class="stateBtn" style="text-align:center; line-height:20px; height:20px;width: 54px; margin:0px; padding:0px; border:0px;color: white;background-color:#ED9C28 ;font-weight: bold;">
+				</div>
+				<div class="textPart">
+					<span >{{details.goodsName}}</span>
+				</div>
+				<div class="message" >
+					<a class="shares" style="color: #666;">
+						<span style="color: 666;float: left;margin-left: 4%;">
+							 期号：{{details.periods}}
+						</span>
+						<div style="float: right;border-left: 1px solid #ACACB4;margin-right: 4%;margin-top: -5px;">
+						<img src="img/fenxiang@2x.png" style="width: 28px;height: 18px;padding-left: 10px;margin-bottom: -4px;"/> 
+						<span style="color: 666;">
+							&nbsp;分享
+						</span>
+						</div>
+						<div class="loadingLong">
+							<div id="progressLong" class="progress">
+							</div>
+						</div>
+					</a>
+					<a class="manySum" style="color: #666;">
+						<span style="color: 666;float: left;margin-left: 4%;">
+							 总需：{{details.totalStock}}&nbsp;份
+						</span>
+						<span style="color: 666;float: right;margin-right: 4%;">
+							剩余：{{details.usableStock}}&nbsp;份
+						</span>
+					</a>
+				</div>
+			</li>
+			<li ng-show="JinXingZhongCanYu" class="stateSum1" style="height: 25px;">
+				<a >
+					<h5 style="display: block;margin-left: 10px;float: left;">已购买{{details.alreadyBuy}}人</h5>
+					<a href="javascript:;#scrolls" ng-click="selectNo()"><h5  style="display: block;margin-right: 10px;color: #D43047;float: right;">查看夺宝号！</h5></a>
+				</a>
+			</li>
+			<li ng-show="JinXingZhongMeiCanYu" class="stateSum2" style="line-height: 20px;">
+				<div  class="">
+					<h5  class="textPart2" id="">您还没参加本期活动，快来试试吧！</h5>
+				</div>
+			</li>
+			<!--进行中详情end-->
+			
+			<!--揭晓中详情begin-->
+			<li  ng-show="JieXiaoZhong" id="" class="stateSum1" style="height: 110px;">
+				<div class="states">
+					<input  type="button" value="揭晓中" class="stateBtn" style="text-align:center; line-height:20px; height:20px;width: 54px; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+				</div>
+				<div class="textPart">
+					<span >{{announced.goodsName}}</span>
+				</div>
+				<div class="message" >
+					<a class="shares" style="color: #666;">
+						<span style="color: 666;float: left;margin-left: 4%;">
+							 期号：{{announced.periods}}
+						</span>
+						<div style="float: right;border-left: 1px solid #ACACB4;margin-right: 4%;margin-top: -5px;">
+						<img src="img/fenxiang@2x.png" style="width: 28px;height: 18px;padding-left: 10px;margin-bottom: -4px;"/> 
+						<span style="color: 666;">
+							&nbsp;分享
+						</span>
+						</div>
+						<div class="loadingLong">
+							<div id="progressLong" class="progressLong" style="background-color: ;">
+							</div>
+						</div>
+					</a>
+					<a class="manySum" style="color: #666;">
+						<span style="color: 666;float: left;margin-left: 4%;">
+							 总需：{{announced.totalStock}}&nbsp;份
+						</span>
+					</a>
+				</div>
+			</li>
+			<li  ng-show="JieXiaoZhongCanYu" style="height: 25px;">
+				<a style="display: block;width: 100%;height: 25px;background-color: #D43047;color: white;">
+						<span style="display: block;float: left;font-size: 13px;width: 30;text-align: center;margin-top: 5px;margin-left:10px;font-weight: bold;">揭晓倒计时</span>
+						<span id="showTime" style="display: block;float: left;font-size: 16px;width: 40;text-align: center;margin-top: 3px;margin-left:18%;font-weight: bold;"></span>
+						<span ng-click="gocalculate()" style="display: block;float: right;font-size: 13px;width: 30;text-align: center;margin-top: 5px;margin-right: 10px;font-weight: bold;">计算详情</span>
+				</a>
+			</li>
+			<li ng-show="JieXiaoZhongCanYu" style="height: 25px;">
+				<a >
+					<h5 style="display: block;margin-left: 10px;float: left;">已购买{{announced.alreadyBuy}}人</h5>
+					<a href="javascript:;#scrolls"><h5  style="display: block;margin-right: 10px;color: #D43047;float: right;">查看夺宝号！</h5></a>
+				</a>
+			</li>
+			<li ng-show="JieXiaoZhongMeiCanYu" class="stateSum2" style="line-height: 20px;">
+				<div  class="">
+					<h5  class="textPart2" id="">您还没参加本期活动，快来试试吧！</h5>
+				</div>
+			</li>
+			<!--揭晓中详情end-->
+			
+			<!--已揭晓详情begin-->
+			<li ng-show="YiJieXiao" id="" class="stateSum1" style="height: 80px;">
+				<div class="states">
+					<input type="button" value="已揭晓" class="stateBtn" style="text-align:center; line-height:20px; height:20px;width: 54px; margin:0px; padding:0px; border:0px;color: white;background-color:#666 ;font-weight: bold;">
+				</div>
+				<div class="textPart">
+					<span >{{announcing.goodsName}}</span>
+				</div>
+				<div class="message" style="">
+					<a class="shares" style="color: #666;">
+						<span style="display: block; color: 666;float: left;margin-left: 4%;margin-top: 15px;">
+							 期号：{{announcing.periods}}
+						</span>
+						<div style="float: right;border-left: 1px solid #ACACB4;margin-right: 4%;margin-top: 10px;">
+						<img src="img/fenxiang@2x.png" style="width: 28px;height: 18px;padding-left: 10px;margin-bottom: -4px;"/> 
+						<span style="color: 666;">
+							&nbsp;分享
+						</span>
+						</div>
+					</a>
+				</div>
+			</li>
+			<li  ng-show="YiJieXiao" style="height: 25px;">
+				<a style="display: block;width: 100%;height: 25px;background-color: #D43047;color: white;">
+						<span style="display: block;float: left;font-size: 13px;width: 30;text-align: center;margin-top: 5px;margin-left:10px;font-weight: bold;">幸运号码：</span>
+						<span  style="display: block;float: left;font-size: 16px;width: 40;text-align: center;margin-top: 3px;margin-left:10%;font-weight: bold;">{{announcing.luckUserId}}</span>
+						<span ng-click="gocalculate()" style="display: block;float: right;font-size: 13px;width: 30;text-align: center;margin-top: 5px;margin-right: 10px;font-weight: bold;">计算详情</span>
+					</a>
+			</li>
+			<li li class="mui-table-view-cell" ng-show="YiJieXiao" class="stateSum1" style="height: 90px;">
+				<!--<div id="" style="float: left;">-->
+					<div id="" style="margin-top: -5px;margin-left: -5px;">
+						<img src="img/kingwing@2x.png" style="width: 25px;height: 25px;"/>
+					</div>
+					<div style="width: 30%;left: 10px;top:-5px; margin-left: -5px;margin-top: -30PX;">
+						<img src="img/03头像-bear(1).png" ng-src="{{announcing.urls}}" style="width: 50px;height: 50px;float: left; border: 1px solid #D43047;border-radius: 25px;margin-left: 4%;margin-top: 10px;"/>
+						<input  type="button" value="获奖者" class="stateBtn" style="float: left;margin-left: -52px;margin-top: 55px; text-align:center; line-height:20px; height:20px;width: 54px;  padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+					</div>
+				<!--</div>-->
+				<!--<div style="width: 30%;float: left; margin-left: 10px;">
+					<img src="images/cbd.jpg" style="width: 50px;height: 50px;float: left; border: 1px solid #D43047;border-radius: 25px;margin-left: 4%;margin-top: 10px;"/>
+					<input  type="button" value="获奖者" class="stateBtn" style="float: left;margin-left: -52px;margin-top: 55px; text-align:center; line-height:20px; height:20px;width: 54px;  padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+				</div>-->
+				<div style="width: 40%;float: left;margin-left: 10px;margin-top: 10px;">
+					<span style="font-size: 13px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+						{{announcing.userId}}
+					</span>
+					<span style="font-size: 13px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+						揭晓时间：{{announcing.announceTime}}
+					</span>
+					<span style="font-size: 13px;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+						本期参与：{{announcing.totalNo}}人次
+					</span>
+				</div>
+				<div style="width: 30%;float: right;margin-left: -5px;margin-top: -2px;">
+					<span id="" style="display: block; margin-top: 15px; font-size: 12px;white-space:nowrap;">
+						{{announcing.adress}}
+					</span>
+				</div>
+				<div ng-click="gorecord()" style="margin-top: 26px;margin-left: 35px; float: left;">
+					<span id="" style="display: block;font-size: 13px;white-space:nowrap;border: 1px solid #D43047;border-radius: 6px;">
+						参与详情 
+					</span>
+				</div>
+			</li>
+			<li ng-show="YiJieXiaoCanYu" style="height: 25px;">
+				<a>
+					<h5 style="display: block;margin-left: 10px;float: left;">已购买{{announcing.alreadyBuy}}人</h5>
+					<a ng-show="YiJieXiaoCanYu" style="float: left;font-size: 18px;color: #D43047;font-weight: bold;margin-left: 15%;">已中奖</a>
+					<a href="javascript:;#scrolls"><h5  style="display: block;margin-right: 10px;color: #D43047;float: right;">查看夺宝号！</h5></a>
+				</a>
+			</li>
+			<li ng-show="YiJieXiaoMeiCanYu" class="stateSum2" style="line-height: 20px;">
+				<div  class="">
+					<h5  class="textPart2" id="">您还没参加本期活动，快来试试吧！</h5>
+				</div>
+			</li>
+			<!--已揭晓详情end-->
+			
+		</ul>
+	</div>
+	<div style="margin-top: -8px;margin-bottom: -5px;">
+		<img src="img/greytab.png" style="height: 10px;width: 100%;" />
+	</div>
+	<!--下方三个列表-->
+	<div>
+		<ul class="mui-table-view">
+			<li ng-click="picWords()" class="mui-table-view-cell mui-media">
+				<a  class="mui-navigate-right">
+					<img class="mui-media-object mui-pull-left" src="img/tuwen@2x.png" style="width: 20px;height: 20px;margin-top: 1px;">
+					<div class="mui-media-body">
+						图文详情
+						<!--<p class='mui-ellipsis'>可是，打呼噜怎么办？</p>-->
+					</div>
+				</a>
+			</li>
+			<li ng-click="moreGoods()" class="mui-table-view-cell mui-media">
+				<a  class="mui-navigate-right">
+					<img class="mui-media-object mui-pull-left" src="img/zuixinjiexiao-hover@2x.png" style="width: 20px;height: 20px;">
+					<div class="mui-media-body">
+						往期揭晓
+						<!--<p class='mui-ellipsis'>冬天围炉取暖.</p>-->
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-collapse">
+				<a class="mui-navigate-right"  ng-click="participation()">
+					<img class="mui-media-object mui-pull-left" src="img/canyujilu@2x.png" style="width: 20px;height: 20px;margin-top: 1px;" >
+					参与记录
+				</a>
+				<div id="people" class="mui-collapse-content" >
+					<ul class="" ng-repeat="partake in partakes">
+						<!--mui-table-view-cell-->
+						<li class=" mui-media" style="margin-top: -15px;border-bottom: 1px solid #EBEBEB;list-style-type: none;padding: 8px;" >
+							<a href="javascript:;" style="margin-left: -20px;color: #999;">
+								<div style="float: left;margin-top: 15px;width: 20%;">
+								<img class="mui-media-object mui-pull-left" src="img/03头像-bear(1).png" ng-src="{{partake.userImage}}" style="border-radius: 20px;">
+								</div>
+								<div class="mui-media-body" style="width: 50%; float: left;font-size: 14px;margin-top: 15px;">
+									{{partake.userId}}
+									<p class='mui-ellipsis' style="font-size: 12px;">{{partake.userAdress}}</p>
+									<p  style="font-size: 12px;">{{partake.announceTime}}</p>
+								</div>
+								<div style="width: 30%; float: right;margin-top: 25px;font-size: 16px;">
+									参与<span style="font-size: 18;color: red;">{{partake.alreadyBuy}}</span>人
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--下部固定按钮，加入清单，立即参与，参与下期-->
+	<footer class="mui-bar-footer mui-bar-tab" style="height: 50px;">
+	<div style="position: fixed;width: 100%;height: 50px;background-color: white;">
+		<div style="float: left;padding: 10px;">
+			<input ng-show="JinXingZhong" ng-click="goShop()" type="button" value="加入清单" class="size-btn" style="text-align:center;height:30px;width: 120px; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+			<input ng-show="YiJieXiao" type="button" value="加入清单" class="size-btn" style="text-align:center;height:30px;width: 120px; margin:0px; padding:0px; border:0px;color: white;background-color:#999999 ;font-weight: bold;">
+			<input ng-show="JieXiaoZhong" type="button" value="加入清单" class="size-btn" style="text-align:center;height:30px;width: 120px; margin:0px; padding:0px; border:0px;color: white;background-color:#999999 ;font-weight: bold;">
+		</div>
+		<div style="float: right;padding: 10px;">
+			<input ng-show="nowbegin" ng-click="checkIn()" type="button" value="立即参与" class="size-btn" style="text-align:center;height:30px;width: 120px; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+			<input ng-hide="JinXingZhong" ng-click="checkInNew()" type="button" value="参与下期" class="size-btn" style="text-align:center;height:30px;width: 120px; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+		</div>
+	</div>
+	</footer>
+	<!--弹出框，点击立即参与，参与下期弹出-->
+	<footer ng-if="shoppingView" class="mui-bar-footer mui-bar-tab" style="height: 180px;width: 100%;">
+	<ul style="width: 100%;height: 150px ;list-style-type:none;">
+		<li style="width: 100%;height: 35px;border-bottom: 1px solid #999;border-top: 1px solid #999;">
+			<!--<span style="font-size: 14px;float: left;margin-left: 20%;margin-top: 10px;width: 50%;">小米体重计 家用健康...</span>-->
+			<span class="center" style="font-size: 16px;float: left;margin-left: 30%;margin-top: 10px;width: 50%;">请选择参与人次</span>
+			<input ng-click="closeShop()" type="button" value="取消 X" class="size-btn" style="float: right;margin-right: 10px;margin-top: 7px;text-align:center; line-height:20px; height:20px;width: 15%;padding:0px;  border:1px solid #D43047;color: #D43047;background-color:white ;font-weight: bold;">
+		</li>
+		<li style="widows: 100%;height: 75px;list-style-type:none;">
+			<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9' style="color: #000000; width: 80%;height: 30px;margin-left: 10%;margin-top: 10px;border: 1px solid #D43047;">
+				<button ng-click="subtract()" style="display: block;border-right: 1px solid #D43047;" class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+				<input ng-model="goodsNumber" style="color: #000000;" id="test" class="mui-input-numbox" type="text" disabled="disabled" />
+				<button ng-click="add()" style="display: block;border-left: 1px solid #D43047;"  class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+			</div>
+			<div  style="width: 80%;height: 25px;margin-left: 12%;margin-top: 10px;">
+				<a style="display: block;white-space:nowrap;">
+					<input ng-click="addten()" type="button" value="10" class="size-btn" style="text-align:center; line-height:26px; height:26px;width: 22%; margin:0px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: bold;">
+					<input ng-click="addfifty()" type="button" value="50" class="size-btn" style="text-align:center; line-height:26px; height:26px;width: 22%; margin:0px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: bold;">
+					<input ng-click="addhd()" type="button" value="100" class="size-btn" style="text-align:center; line-height:26px; height:26px;width: 22%; margin:0px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: bold;">
+					<input ng-click="adddl()" type="button" value="1000" class="size-btn" style="text-align:center; line-height:26px; height:26px;width: 22%; margin:0px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: bold;">
+				</a>
+			</div>
+			<div id="">
+				<span class="center" style="font-size: 14px;margin-top: 10px;">需要花费{{goodsNumber}}夺宝币</span>
+			</div>
+			<div >
+				<input ng-click="shopping()" type="button" value="购买" class="size-btn" style="display: block; margin-left: 10%;margin-top: 5px;text-align:center; line-height:30px; height:30px;width: 80%;padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+			</div>
+		</li>
+	</ul>
+	</footer>
+</div>
+<!--<div class="height"></div>-->

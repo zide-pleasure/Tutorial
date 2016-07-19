@@ -1,0 +1,112 @@
+<!--
+ 最新揭晓页面
+ by youjie
+-->
+<style type="text/css">
+	.yijiexiao {
+		width: 100%;
+		height: 80px;
+		border-bottom: 10px solid #E3E3E3;
+	}
+	.yijiexiaoTitle {
+		position: absolute; 
+		line-height:25px;
+		width:80px;
+		height:25px;
+		margin:0;
+		opacity:.6;
+		background-color:#000;
+		color: white;
+		font-weight: bold;
+		padding-bottom: 5px;
+		text-align: center;
+		margin-left: 0px;
+		margin-top: -25px;
+	}
+	.yjxImg {
+		display: block;
+		width: 80px;
+		height: 80px;
+		margin: 0px;
+		border: 1px solid #ADADAD;
+	}
+	.zhengzaijiexiao{
+	}
+	.zhengzaijiexiaoTil{
+		position: absolute; 
+		line-height:25px;
+		width:80px;
+		height:25px;
+		margin:0;
+		opacity:.6;
+		background-color:#D43047;
+		color: white;
+		font-weight: bold;
+		padding-bottom: 5px;
+		text-align: center;
+		margin-left: 0px;
+		margin-top: -25px;
+	}
+	.zhengzaijiexiaoImg{
+		display: block;
+		width: 80px;
+		height: 80px;
+		margin: 0px;
+		border: 1px solid #ADADAD;
+	}
+	.clocks{
+		display: block;
+		padding: 5px;
+	}
+</style>
+<div class="mui-content ">
+	<div id="">
+	<ul class="mui-table-view mui-table-view-chevron" >
+			<div ng-repeat="anounced in anounceds">
+			<li  ng-click="godetail($index)" id="" class="mui-table-view-cell yijieixao" style="list-style-type: none;background-color:white ;border-bottom: 4px solid #E3E3E3;"  >
+				<div style="width: 30%;float: left;margin-top: 20px;	"> 
+					<img ng-src="{{anounced.urlimg}}" class="yjxImg" >
+					<div style="margin: ;" >
+							<p class="yijiexiaoTitle" >已揭晓</p>
+					</div>
+				</div>
+				<div id="" style="width: 50%;float: left;margin-left: 20px;">
+					<span class="" style="font-size: 16px;white-space:nowrap;">第{{anounced.periods}}期&nbsp;{{anounced.goodsName}}</span>
+					<span class="" style="font-size: 14px;white-space:nowrap;">价值：{{anounced.price}}</span>
+					<span class="" style="font-size: 12px;white-space:nowrap;color: #666;">期号：{{anounced.nunmerNo}}</span>
+					<span class="" style="font-size: 14px;color: #D43047;white-space:nowrap;">中奖者：{{anounced.userName}}</span>
+					<span class="" style="font-size: 12px;white-space:nowrap;color: #666;">本期夺宝{{anounced.personNum}}人次</span>
+					<span class="" style="font-size: 12px;white-space:nowrap;color: #666;">揭晓时间：{{anounced.stopTime}}</span>
+				</div>
+				<div style="width: 10%;float:right;margin-right: -30px;margin-top: 35px;">
+					<img ng-src="{{anounced.headImg}}" style="border-radius:20px;width: 40px;height: 40px;"/>
+				</div>
+			</li>
+			</div>
+			</ul>
+			<ul  class="mui-table-view mui-table-view-chevron" >
+			<div ng-repeat="anouncing in anouncings">
+			<li  ng-click="godetails($index)" id="" class="mui-table-view-cell zhengzaijiexiao" style="list-style-type: none;background-color:white ;border-bottom: 4px solid #E3E3E3;" >
+				<div style="width: 30%;float: left;margin-top: 10px;	"> 
+					<img ng-src="{{anouncing.urlimg}}" class="zhengzaijiexiaoImg">
+					<div style="margin: ;" >
+							<p class="zhengzaijiexiaoTil" >正在揭晓</p>
+					</div>
+				</div>
+				<div id="" style="width: 50%;float: left;margin-left: 20px;">
+					<span class="" style="font-size: 16px;white-space:nowrap;">第{{anouncing.periods}}期&nbsp;{{anouncing.goodsName}}</span>
+					<span class="" style="font-size: 14px;white-space:nowrap;">价值：{{anouncing.price}}</span>
+					<span class="" style="font-size: 12px;white-space:nowrap;color: #666;">期号：{{anouncing.nunmerNo}}</span>
+					<span class="clocks" style="white-space:nowrap;">
+					<img src="img/time@2x.png" style="height: 18px;width: 18px;margin-left: -5px;"/>
+					<span id="one" style="font-size: 22px;color: #D43047;margin-left: 5px;"></span>
+					</span>
+				</div>
+				<div style="width: 10%;float:right;margin-right: -30px;margin-top: 35px;">
+					<img src="images/muwu.jpg" style="border-radius:20px;width: 40px;height: 40px;"/>
+				</div>
+			</li>
+			</div>
+		</ul>
+</div>
+	</div>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="mui.min.css">
+		<!--App自定义的css-->
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="mui.min.js"></script>
+		<style type="text/css">
+		.center{
+			display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+			display: -moz-box; /* OLD: Firefox (can be buggy) */
+			display: -ms-flexbox; /* OLD: IE 10 */
+			display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+			display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+			-webkit-box-align: center;
+			-moz-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		 	-webkit-box-pack: center;
+			-moz-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+		}
+		.title{
+			margin-top: 20px;
+			color: #666;
+		}
+		.mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before
+		{
+		    color: #D43047;
+		}
+		.bodys{
+			height: auto;
+			width: 100%;
+		}
+		.btns{
+			width: 80%;
+			margin-left: 10%;
+			margin-top: 20%;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="bodys">
+			<ul class="mui-table-view" style="">
+				<li class=" " style="list-style-type: none;white-space:nowrap;">
+					<div id="" class="center ">
+						<span class="title" id="">
+								选择充值金额（元）
+						</span>
+					</div>
+					<div style="margin-top: 20px;">
+						<div class="center" style="">
+						<input id="click10" type="button" value="10" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 20px;">
+						<input id="click20" type="button" value="20" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 20px">
+						<input id="click50" type="button" value="50" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 20px">
+						</div>
+						<div class="center " style="padding-bottom:20px ;">
+						<input id="click100" type="button" value="100" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 20px">
+						<input id="click1000" type="button" value="1000" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 20px">
+						<!--<input ng-click="addfifty()" type="button" value="其他金额" class="size-btn" style="float: left; text-align:center; line-height:26px; height:40px;width: 30%; margin:4px; padding:0px; border:1px solid #D43047;color: #D43047;background-color:white;font-weight: 450;font-size: 18px">-->
+                			<input id="clickMore" style="border: 1px solid #D43047;line-height:26px; height:40px;width: 30%;margin:4px; padding:0px;float: left;text-align:center;color: #D43047;font-weight: 450;font-size: 18px " type="text"  placeholder="其他金额" />
+						</div>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" style="">
+				<li class=" " style="list-style-type: none;white-space:nowrap;">
+					<div id="" class="center ">
+						<span class="center" style="padding: 15px;color: #666;" id="">
+								选择支付方式
+						</span>
+					</div>
+				</li>
+				</ul>
+				<ul class="mui-table-view" style="">
+				<li class=" " style="list-style-type: none;height: 60px;white-space:nowrap;">
+					<div id="" class="mui-input-row mui-checkbox">
+					<div style="float: left;">
+					<img src="../img/weixin.png" style="width: 40px;height: 36px;margin-top: 10px;margin-left: 10px;"/>
+					</div>
+	     			<div class="" style="float: left;margin-top: 10px;font-size: 18px;">
+	     				<span style="margin-left: 10px;color: #333;">微信支付</span>
+	     				<img src="../img/tuijian.png" style=" width: 38px;height: 17px;margin-bottom: -2px;"/>
+	     				<span style="display: block;margin-left: 10px; font-size: 12px;color: #999;">亿万用户的选择，更快更安全。</span>
+						<input style="margin-top: 10px;margin-right: -10px;" name="checkbox1" value="Item 3" type="checkbox" >
+	     			</div>
+					</div>
+				</li>
+			</ul>
+			<div id="enterPay">
+				<button  type="button" class="mui-btn mui-btn-danger mui-btn-block btns" style="background-color: #D43047;border-radius: 8px;">
+					<span id="" style="font-weight: 600;font-size: 20px;">
+					确认支付
+					</span>
+				</button>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var buttons10=false;
+			var buttons20=false;
+			var buttons50=false;
+			var buttons100=false;
+			var buttons1000=false;
+			var buttonsMore=false;
+			document.getElementById("click10").addEventListener('tap',function () {
+				if(buttons10==false){
+					var buttons10=true;
+					
+				}else{
+					var buttons10=false;
+				}
+			}
+			document.getElementById("click20").addEventListener('tap',function () {
+				
+			}
+			document.getElementById("click50").addEventListener('tap',function () {
+				
+			}
+			document.getElementById("click100").addEventListener('tap',function () {
+				
+			}
+			document.getElementById("click1000").addEventListener('tap',function () {
+				
+			}
+			document.getElementById("clickMore").addEventListener('tap',function () {
+				
+			}
+		</script>
+	</body>
+</html>

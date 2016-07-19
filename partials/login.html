@@ -1,0 +1,149 @@
+<style>
+	.fcc {
+		display: -webkit-flex;
+		display: flex;
+		flex-flow: column;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+	.faa{
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content:space-around;
+	    justify-content:space-around;
+	}
+	* {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	
+	body {
+		background: #f1f1f1;
+	}
+	
+	.login-header {
+		height: 140px;
+		width: 100%;
+		background: url(images/login背景图.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	input:focus {
+		outline: none;
+	}
+	
+	.header-img {
+		width: 65px;
+		height: 65px;
+		border-radius: 50%;
+	}
+	
+	.header-img img {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.logininputList input {
+		border: none;
+		color: #bdbdbd;
+		text-indent: 13px;
+		line-height: 16px;
+		
+		font-size: 16px;
+		width: 76%;
+		margin-bottom: 0;
+		height: 16px;
+		font-size: 14px;
+	}
+	
+	.logininputList {
+		width: 90%;
+		margin: 5% auto;
+		margin-top: 14px;
+		background: #ffffff;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	
+	.logininputList li {
+		width: 100%;
+		height: 60px;
+		
+	}
+	
+	.logininputList li span {
+		height: 40px;
+		width: 30px;
+		display: block;
+	}
+	
+	.logininputList li:nth-of-type(1) span {
+		background: url(img/图层-60-拷贝@2x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.logininputList li:nth-of-type(2) span {
+		background: url(img/图层-60@2x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.btn-login {
+		width: 90%;
+		margin: 5% auto;
+		height: 60px;
+		line-height: 60px;
+		text-align: center;
+		background: #d43048;
+		font-size: 17px;
+		font-weight: 800;
+		border-radius: 8px;
+		color: #fffdff;
+		display: block;
+		padding: 0 0;
+	}
+	
+	.forget-toreg {
+		width: 90%;
+		margin: 5% auto;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content:space-between;
+	    justify-content:space-between;
+	}
+	
+	.forget-toreg p {
+		color: #d43048;
+		font-weight: 700;
+	}
+</style>
+<div class="loContainer">
+	<div class="login-header  fcc">
+		<div class="header-img"><img src="img/03头像-bear(1).png"></div>
+	</div>
+	<ul class="logininputList">
+
+		<li class="faa">
+			<span></span>
+			<input id="_txt" type="text" ng-model='user.phone' maxlength="11" placeholder="请输入手机号码" />
+
+		</li>
+
+		<li class="faa">
+			<span></span>
+			<input id="lo-pwd" type="password" ng-model='user.pwd' maxlength="16" placeholder="请输入密码" />
+
+		</li>
+
+	</ul>
+	<button class="btn-login" ng-click="goLogin()">登陆</button>
+	<div class="forget-toreg">
+		<p ng-click="goRegister()">点击注册</p>
+		<p ng-click="goForget()">忘记密码</p>
+	</div>
+</div>

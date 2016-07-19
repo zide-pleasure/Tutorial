@@ -1,0 +1,86 @@
+
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+			
+			body {
+				background: #f1f1f1;
+			}
+			
+			.adressinputList input {
+				margin-bottom: 0;
+				border: none;
+				text-indent: 10px;
+				width: 73%;
+				line-height: 15px;
+				font-size: 15px;
+				height: 15px;
+				
+			}
+					
+			.adressinputList li {
+				width: 100%;
+				height: 50px;
+				background: white;
+				margin-top: 3px;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+			
+			.adressinputList li:nth-of-type(5) {
+				height: 90px;
+			}
+			
+			.adressinputList li span {
+				width: 20%;
+				text-align: left;
+				color: #666666;
+				font-size: 15px;
+			}
+			
+			.adress-submit {
+				outline: none;
+				width: 90%;
+				margin: 5% auto;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background: #d43048;
+				font-size: 17px;
+				font-weight: 800;
+				border-radius: 8px;
+				color: #fffdff;
+				display: block;
+				padding: 0 0;
+			}
+		</style>
+		<div class="myAdress">
+			<ul class="adressinputList">
+				<li>
+					<span>收货人</span>
+					<input id="ad-name" ng-model="ADname" type="text"  maxlength="6" placeholder="请输入真实姓名" />
+				</li>
+				<li>
+					<span>手机号码</span>
+					<input id="ad-phone" ng-model="ADphone" type="tel" maxlength="11" placeholder="请输入手机号码" />
+				</li>
+				<li>
+					<span>邮政编码</span>
+					<input type="text" ng-model="ADcode" maxlength="6" placeholder="请输入邮政编码" />
+				</li>
+				<li ng-click="xzAdress()">
+					<span>地区</span>
+					<input id="ad-area" type="text" placeholder="请选择地区"  ng-model="address3" />
+				</li>
+				<li>
+					<span>详细地址</span>
+					<input type="text" ng-model="ADdetial"  maxlength="20" style="border: none; width: 75%; outline: none;" id="ad-areaDetial" placeholder="请输入详细地址"></textarea>
+				</li>
+			</ul>
+			<button class="adress-submit" ng-click="subAdress()">提交</button>
+		</div>

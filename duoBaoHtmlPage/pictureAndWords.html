@@ -1,0 +1,63 @@
+<!--
+	图文详情
+	by youjie
+-->
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8" content = "telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title></title>
+		<script src="mui.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<link href="mui.min.css" rel="stylesheet"/>
+		<style type="text/css">
+		.goodsImg{
+			width: 100%;
+			height: auto;
+		}
+		</style>
+	</head>
+	<body ng-app="picAndWordModule" >
+		<div id="goodsImg" class="goodsTop" >
+		 	<!--<img src="" class="goodsImg"/>-->
+		</div>
+		<script type="text/javascript">
+			//截取url内容
+			var goodsId = request("goodsId");
+//	        var token = request("token");
+//	        var appId = request("appId");
+	        //请求图片信息
+	        $.post(
+	        		'http://service.renwuke.com/shop/api/' + 'goods/image/list',
+	        		{goodsId:goodsId},
+	        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("返回的图片列表："+JSON.stringify(data));
+	        			var urlList=[]; 
+	        			urlList = data.data.list;
+	        			console.log("UrlList的值："+JSON.stringify(urlList));
+	        			for(var i=0;i<urlList.length;i++){
+	        				console.log("进入");
+	        				var btn="<img src='"+urlList[i]+"' style='width: 100%;height: auto;vertical-align:bottom; display:block;'/>"
+						console.log("url的值："+urlList[i]);
+						$("#goodsImg").append(btn);
+	        			}
+	       		});
+	       		function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+	 	</script>
+	</body>
+</html>

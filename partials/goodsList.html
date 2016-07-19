@@ -1,0 +1,121 @@
+<!--
+	by youjie 
+	商品列表展示页面
+-->
+<style type="text/css">
+	.backimg {
+		float: left;
+		margin-top: 1px;
+		margin-left: -8px;
+		color: white;
+	}
+	.mui-search:before{
+	top:60%;
+	}
+	.mui-input-row.mui-search .mui-icon-clear {
+	top: 0px;
+	right: 5px;
+	}
+	.kindOf{
+		float: right;
+		width:20% ;
+	}
+	.size-btn{
+		
+	}
+	.backTop{
+		position: fixed;
+		right: 50px;
+		bottom: 150px;
+		width: 40px;
+		height: 40px;
+		color: white;
+		background-color: #D43047;
+		border: 2px solid #D43047;
+		border-radius: 25px;
+		opacity:0.6;
+		text-align:center; 
+	}
+</style>
+    <!--右上角弹出菜单-->
+		<div id="topPopover" class="mui-popover" style="height: 310px;width: 100px;">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" style="margin-top: -5px;margin-bottom: -5px;">
+						<li ng-click="popvers1()" class="mui-table-view-cell"><a>热门精选</a>
+						</li>
+						<li class="mui-table-view-cell"><a>美食饮品</a>
+						</li>
+						<li class="mui-table-view-cell"><a >创意家居</a>
+						</li>
+						<li class="mui-table-view-cell"><a >数码电子</a>
+						</li>
+						<li class="mui-table-view-cell"><a >箱包配饰</a>
+						</li>
+						<li class="mui-table-view-cell"><a >运动健康</a>
+						</li>
+						<li class="mui-table-view-cell"><a >男生女生</a>
+						</li>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<div class="mui-content ">
+	<!--顶部搜索部分-->
+	<div >
+		<header id="popverheader" class="mui-bar mui-bar-nav">
+			<div  class="mui-icon mui-icon-left-nav backimg" ng-click="back()" style="width: 10%;float: left;">
+			</div>
+			<a class="searchwidth" style="margin-top:9px;float: left;width: 85%;color: #000000;" >
+				<input ng-model="keyWords" type="text" class="searchinput "  placeholder="" style="padding-top:5px;padding-bottom: 5px;" disabled="disabled"/>
+				<input type="button" class="searchbtn" style="" disabled="disabled"/>
+			</a>
+		</header>
+	</div>
+	<!--顶部搜索部分-->
+	<div class="" class="notscroll">
+		<ul class="mui-table-view">
+			<div >
+				<li class="mui-table-view-cell" style="height: 80px;border-bottom:1px solid #999 ;" ng-repeat="goodSch in goodSchs">
+					<div ng-click="godetail($index)" style="float: left;width: 30%;margin-top: -4px;">
+						<img ng-src="{{goodSch.goodsIcon}}" style="width: 65px;height: 65px;padding: 0px;"/>
+					</div>
+					<div ng-click="godetail($index)" style="float: left;width: 60%;margin-top: -2px;">
+						<!--<span style="font-size: 16px; ">--><h5 style="color: #000000;">
+							{{goodSch.goodsName}}
+						<!--</span>--></h5>
+						<div class="loading" style="margin-top: 8px;">
+							<div id="progress" ng-style="progress">
+							</div>
+						</div>
+						<div id="">
+							<span style="font-size: 12px;white-space:nowrap;color: #999; ">
+							总需：{{goodSch.goodsTotle}}
+						</span>
+						<span style="font-size: 12px;color: #999;">
+							剩余：{{goodSch.goodsSurplus}}
+						</span>
+						</div>
+					</div>
+					<div ng-click="goShopping($index)" ng-click="shoppingCar()" style="float:right ; margin-top: -40px;margin-right: 1px; ">
+						<img src="img/gouwuchehong.png" style="width: 35px;height: 35px;"/>
+					</div>
+				</li>
+			</div>
+		</ul>
+		<div class="backTop" ng-click="backTop()" ng-show="backTops">
+				<span id="" style="display:block;font-size: 13px;font-weight: bold;text-align: center;">
+					返回<br />顶部
+				</span>
+		</div>
+	</div>
+	<div >
+		<ul>
+			<li >
+				<img src="img/greytab.png" style="height: 20px;width: 100%;margin-bottom: -10px;" />
+			</li>
+		</ul>
+	</div>
+</div>

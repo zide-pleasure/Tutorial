@@ -1,0 +1,44 @@
+<!--
+	youjie
+	主界面
+-->
+<!--头部导航文字-->
+<div class="mui-content ">
+<header class="mui-bar mui-bar-nav" style="background-color:#d43047 ;" id="offCanvasWrapper" ng-show="headder">
+	 	 <a class="mui-icon mui-icon-left-nav" ng-click="back()" ng-hide="hideBack">
+	     </a>
+	     <img ng-show="qiandao" ng-click="goodsSerch()" src="img/search@2x.png" style="margin-top:12px; margin-left: 10px;float: left;height: 20px;width: 20px;"></img>
+	     <h1 class="mui-title" id="title" style="color:white;font-weight:bold;">{{appTitle}}</h1>
+	     <img ng-show="qiandao" ng-click="gonglue()" src="img/shiliangtu@2x.png" style="margin-top:12px;margin-right: 10px;float: right;height: 20px;width: 16px;"></img>
+		 <div style="float: right;margin-top:16px;margin-right: 6px;height: 30px;">
+		 <img ng-show="gouwuche" ng-click="gouwuches()" src="img/gouwuche@2x.png" style="display:block;float: right;height: 20px;width: 20px;"></img>
+		 <!--商品搜索页 -->
+		 <div style="float:right;margin-right: -10px;margin-top: -8px;margin-right: -30px; ">
+		 <input ng-show="gouwuche" ng-click="gouwuches()" type="button" value="99" class="size-btn" style="float: right;display:block;text-align:center; line-height:15px; height:18px;width: 18px; margin:0px; padding:0px; border:1px solid white;color: #D43047;background-color:white ;border-radius: 20px;">
+		 </div>
+		 </div>
+</header>
+<!--底部选项卡-->
+<footer class="mui-bar-footer mui-bar-tab" ng-show="tabBar"> 
+	<a  class="mui-tab-item mui-active" ui-sref="main" ng-click="main()">
+		<span class="mui-icon mui-icon-home"></span>
+		<span class="mui-tab-label">夺宝</span>
+	</a>
+	<a class="mui-tab-item" ui-sref="main.finance" ng-click="finance()">
+		<span class="mui-icon mui-icon-compose"></span>
+		<span class="mui-tab-label">最新揭晓</span>
+	</a>
+	<!--<a class="mui-tab-item" ui-sref="main.member" ng-click="member()">
+		<span class="mui-icon mui-icon-plusempty"></span>
+		<span class="mui-tab-label">晒单</span>
+	</a>-->
+	<a class="mui-tab-item" ui-sref="main.recharge" ng-click="recharge()">
+		<span class="mui-icon mui-icon-bars"></span>
+		<span class="mui-tab-label">清单</span>
+	</a>
+	<a class="mui-tab-item" ui-sref="main.mine" ng-click="mine()">
+		<span class="mui-icon mui-icon-more"></span>
+		<span class="mui-tab-label">我</span>
+	</a>
+</footer>
+</div>

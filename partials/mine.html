@@ -1,0 +1,117 @@
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	
+	body {
+		background: #f1f1f1;
+	}
+	
+	.fl-c {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.fl-y {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	
+	.mine-top {
+		margin: 0 auto;
+		width: 100%;
+		height: 245px;
+		background: url(images/我的背景图.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.mtop {
+		margin: 0 auto;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		color: white;
+		padding-top: 15px;
+	}
+	
+	.goRecharge {
+		color: white;
+		font-size: 18px;
+		width: 124px;
+		height: 38px;
+		border-radius: 5px;
+		background: #d43048;
+	}
+	
+	.top-tx {
+		height: 97px;
+		width: 97px;
+		border-radius: 50%;
+	}
+	
+	.top-tx img {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+	
+	.mine-bottom {
+		margin-top: 20px;
+	}
+	
+	.mine-bottom .bottomM {
+		width: 33%;
+		height: 150px;
+	}
+	
+	.bottomM span {
+		color: #676767;
+	}
+	
+	.bottomM p {
+		display: block;
+		color: #676767;
+		width: 100%;
+		padding: 10px 0;
+	}
+	
+	.bottomM {
+		padding: 10px 0;
+		border: 1px solid #dedede;
+		background: #ffffff;
+		border-right: none;
+		text-align: center;
+	}
+	.top-userCount p{
+		font-size: 17px;
+		font-weight: 700;
+		color: white;
+	}
+</style>
+<script type="text/javascript" src="../js/mine.js" ></script>
+<div class="tab-mine">
+	<div class="mine-top">
+		<div class="mtop top-tx"><img src="img/03头像-bear(1).png" /></div>
+		<div class="mtop top-userN">{{userName}}</div>
+		<div class="mtop top-userCount">可用余额：
+			<p>{{usable}}</p>
+		</div>
+		<div class="mtop top-charge">
+			<a class="goRecharge fl-c" href="javascript:" ng-click="goshpping()">我要充值</a>
+		</div>
+	</div>
+	<div class="mine-bottom fl-c">
+		<div class="bottomM" ng-click="goDBrecord()">
+			<p><img src="img/夺宝记录@2x.png" alt="夺宝记录" /></p><span>夺宝记录</span></div>
+		<div class="bottomM" ng-click="goSetadress()">
+			<p><img src="img/收货地址@2x.png" alt="收货地址" /></p><span>收货地址</span></div>
+		<div class="bottomM" ng-click="goMessage()">
+			<p><img src="img/消息中心@2x.png" alt="消息中心" /></p><span>消息中心</span></div>
+	</div>
+</div>

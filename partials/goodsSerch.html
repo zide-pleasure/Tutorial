@@ -1,0 +1,164 @@
+<!--
+	by youjie 
+	商品查询页面
+-->
+<style type="text/css">
+	.backimg {
+		float: left;
+		margin-top: 1px;
+		margin-left: -8px;
+		color: white;
+	}
+	.mui-search:before{
+	top:60%;
+	}
+	.mui-input-row.mui-search .mui-icon-clear {
+	top: 0px;
+	right: 5px;
+	}
+	.kindOf{
+		float: right;
+		width:20% ;
+	}
+	.size-btn{
+	}
+	.backTop{
+		position: fixed;
+		right: 50px;
+		bottom: 150px;
+		width: 40px;
+		height: 40px;
+		color: white;
+		background-color: #D43047;
+		border: 2px solid #D43047;
+		border-radius: 25px;
+		opacity:0.6;
+		text-align:center; 
+	}
+			.mui-col-xs-3,
+			.mui-control-content {
+				overflow-y: auto;
+				height: 100%;
+			}
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+		.mui-content{
+			/*margin-top: 44px;*/
+		}
+		@media (min-width: 768px){
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 86%;
+			}}/*屏幕最小为768px时调用括号里的属性*/
+		@media (max-width: 767px) {
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 92%;
+			}}/*屏幕最大为768px时调用括号里的属性*/
+		@media (min-width: 768px) and (max-width: 1080px) {
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}}/*屏幕的大小在 768和991之间时调用括号里的属性*/
+</style>
+<div id="demo1" class="mui-progressbar ">
+					<span></span>
+				</div>
+    <!--右上角弹出菜单-->
+		<!--<div id="topPopover" class="mui-popover" style="height: 310px;width: 100px;">
+			<div class="mui-popover-arrow"></div>
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view" style="margin-top: -5px;margin-bottom: -5px;">
+						<li ng-click="popvers1()" class="mui-table-view-cell"><a>热门精选</a>
+						</li>
+						<li class="mui-table-view-cell"><a>美食饮品</a>
+						</li>
+						<li class="mui-table-view-cell"><a >创意家居</a>
+						</li>
+						<li class="mui-table-view-cell"><a >数码电子</a>
+						</li>
+						<li class="mui-table-view-cell"><a >箱包配饰</a>
+						</li>
+						<li class="mui-table-view-cell"><a >运动健康</a>
+						</li>
+						<li class="mui-table-view-cell"><a >男生女生</a>
+						</li>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>-->
+	<div class="mui-content mui-row mui-fullscreen">
+	<!--顶部搜索部分-->
+	<div  ng-hide="hedeaders">
+		<header id="popverheader" class="mui-bar mui-bar-nav"  >
+			<!--ng-show="goodsSerch"-->
+			<div  class="mui-icon mui-icon-left-nav backimg" ng-click="back()" style="width: 10%;float: left;">
+			</div>
+			<div ng-show="goodsSerch" class="searchwidth" style="margin-top:9px;float: left;">
+				<input ng-click="goserch()" type="text" ng-model="goodsSerchIput" class="searchinput " data-role="none" placeholder="请输入商品名称" style="text-transform: uppercase;padding-top:5px;padding-bottom: 5px;" />
+				<input ng-click="goserch()" type="button" data-role="none" class="searchbtn" style="" />
+			</div>
+		</header>
+	</div>
+	<div >
+		<ul>
+			<li >
+				<img src="img/greytab.png" style="height: 50px;width: 100%;margin-bottom: -10px;" />
+			</li>
+		</ul>
+	</div>
+		<div class="mui-col-xs-3" style="width: 25%;float: left;">
+			<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+			
+			</div>
+		</div>
+		<div id="segmentedControlContents" class="mui-col-xs-9" style="float: right; width: 75%; border-left: 1px solid #c8c7cc;">
+			<!--<div id="item1" class="mui-control-content mui-active">
+			</div>
+			<div id="item2" class="mui-control-content">
+			</div>
+			<div id="item3" class="mui-control-content">
+			</div>-->
+			<ul class="mui-table-view">
+			<div >
+				<!--<li class="mui-table-view-cell" style="height: 80px;border-bottom:1px solid #999 ;" ng-repeat="goodSch in goodSchs">
+					<div ng-click="godetail($index)" style="float: left;width: 30%;margin-top: -4px;">
+						<img ng-src="{{goodSch.goodsIcon}}" style="width: 65px;height: 65px;padding: 0px;"/>
+					</div>
+					<div ng-click="godetail($index)" style="float: left;width: 60%;margin-top: -2px;">
+						<h5 style="color: #000000;">
+							{{goodSch.goodsName}}
+						</h5>
+						<div class="loading" style="margin-top: 8px;">
+							<div id="progress" ng-style="progress">
+							</div>
+						</div>
+						<div id="">
+							<span style="font-size: 12px;white-space:nowrap;color: #999; ">
+							总需：{{goodSch.goodsTotle}}
+						</span>
+						<span style="font-size: 12px;color: #999;">
+							剩余：{{goodSch.goodsSurplus}}
+						</span>
+						</div>
+					</div>
+					<div   style="float:right ; margin-top: -40px;margin-right: 1px; ">
+						<img ng-click="goShopping($index)" src="img/gouwuchehong.png" style="width: 35px;height: 35px;"/>
+					</div>
+				</li>-->
+			</div>
+		</ul>
+		<div class="backTop" ng-click="backTop()" ng-show="backTops">
+				<span id="" style="display:block;font-size: 13px;font-weight: bold;text-align: center;">
+					返回<br />顶部
+				</span>
+		</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		mui(container).progressbar({progress:20}).show();
+	</script>

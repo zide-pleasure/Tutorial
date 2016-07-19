@@ -1,0 +1,78 @@
+
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+			
+			body {
+				background: #f1f1f1;
+			}
+			.forgetContainer{
+				margin-top: 70px;
+			}
+			.forgetinputList input {
+				border: none;
+				text-indent: 10px;
+				width: 60%;
+				line-height: 16px;
+				font-size: 16px;
+				margin-bottom: 0;
+					height: 16px;
+			}
+			.forgetinputList p {
+				width: 30%;
+				height: 40px;
+				border-radius: 5px;
+				text-align: center;
+				line-height: 40px;
+				margin-top: 10px;
+				color: white;
+			}
+			
+			.forgetinputList li:nth-of-type(1) p {
+				background: #d43048;
+			}
+			
+			.forgetinputList li {
+				width: 100%;
+				height: 50px;
+				background: white;
+				margin-top: 3px;
+				display: flex;
+				justify-content: space-around;
+				align-items: center;
+			}
+			
+			.next-forget {
+				outline: none;
+				width: 90%;
+				margin: 5% auto;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background: #d43048;
+				font-size: 17px;
+				font-weight: 800;
+				border-radius: 8px;
+				color: #fffdff;
+				display: block;
+				padding: 0 0;
+			}
+		</style>
+		<div class="forgetContainer">
+			<ul class="forgetinputList">
+				<li>
+					<input id="phone_txt" type="text" maxlength="11" ng-model='user.fophone' placeholder="请输入手机号码" />
+					<p ng-hide="sendcode" ng-click="sendFcode()">发送验证码</p>
+					<p ng-hide="sendsucc">已发送</p>
+				</li>
+				<li class="yzm">
+					<input id="yzcode" type="text" maxlength="4" ng-model='user.forCode' placeholder="请输验证码" />
+					<p></p>
+				</li>
+			</ul>
+			<button class="next-forget" ng-click="goNextForget()">下一步</button>
+		</div>

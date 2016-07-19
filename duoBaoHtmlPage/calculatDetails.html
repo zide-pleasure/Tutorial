@@ -1,0 +1,393 @@
+<!--
+	计算详情
+	by youjie
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" >
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta name="format-detection" content="telephone=no" />
+		<title></title>
+		<script src="angular.js"></script>
+		<script src="mui.min.js"></script>
+		<script src="layer.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<script src="jquery.dialog.js"></script>
+		<link href="dialog.css" rel="stylesheet" />
+		<link href="mui.min.css" rel="stylesheet"/>
+		<link href="layer.css" rel="stylesheet" />
+		<style type="text/css">
+		@media (min-width: 370px){
+			.timer {
+				width: 70%;
+				/*float: left;*/
+				margin-left:0px;
+				margin-top: 5px;
+				white-space:nowrap;
+			}
+			.namer{
+				position: absolute;
+				width: 30%;
+				/*float: left;*/
+				left: 80%;
+				margin-left: -50px;
+				margin-right: -15px;
+				font-size:12px;
+				
+				display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+				display: -moz-box; /* OLD: Firefox (can be buggy) */
+				display: -ms-flexbox; /* OLD: IE 10 */
+				display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+				display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			 	-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				
+				white-space:nowrap;
+			}
+			.DBtime{
+				float: left;
+				margin-left: 70px;
+			}
+			.DBname{
+				float: right;
+				margin-right: -30px;
+			}
+			}/*屏幕最小为768px时调用括号里的属性,屏幕大于等于740*/
+		@media (min-width: 400px){
+			.timer {
+				width: 70%;
+				/*float: left;*/
+				margin-left:0px;
+				margin-top: 5px;
+				white-space:nowrap;
+			}
+			.namer{
+				position: absolute;
+				width: 30%;
+				/*float: left;*/
+				left: 80%;
+				margin-left: -50px;
+				margin-right: -15px;
+				font-size:12px;
+				
+				display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+				display: -moz-box; /* OLD: Firefox (can be buggy) */
+				display: -ms-flexbox; /* OLD: IE 10 */
+				display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+				display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			 	-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				
+				white-space:nowrap;
+			}
+			.DBtime{
+				float: left;
+				margin-left: 70px;
+			}
+			.DBname{
+				float: right;
+				margin-right: -30px;
+			}
+			}/*屏幕最小为768px时调用括号里的属性,屏幕大于等于740*/
+		@media (max-width: 370px) {
+			.timer {
+				font-size: 11px;
+				margin-left:-8px;
+				margin-top: 5px;
+				white-space:nowrap;
+			}
+			.namer{
+				width: 20%;
+				float: right;
+				margin-right: -45px;
+				font-size:11px;
+				vertical-align:middle; 
+				white-space:nowrap;
+			}
+			.DBtime{
+				float: left;
+				font-size: 16px;
+				margin-left: 70px;
+			}
+			.DBname{
+				float: right;
+				font-size: 16px;
+				margin-right: -50px;
+			}
+			}/*屏幕最大为768px时调用括号里的属性*/
+		/*@media (min-width: 500px) and (max-width: 1080px) {
+			.timer {
+				margin-left: 50px;
+				margin-top: 5px;
+				white-space:nowrap;
+			}
+			.namer{
+				float: right;
+				margin-right: -50px;
+				font-size:12px;
+			}
+			.DBtime{
+				float: left;
+				margin-left: 60px;
+			}
+			.DBname{
+				float: right;
+				margin-right: -60px;
+			}
+			}/*屏幕的大小在 768和991之间时调用括号里的属性*/*/
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+		<div id="test-dialog" style="display:none;">
+			<p>1.取该商品最后购买时间前网站所有商品100条购买记录（限时揭晓商品取截止时间前网站所有商品100条购买时间记录）。</p>
+			<p>2.时间按时、分、秒、毫秒一次排列组成一组数值。</p>
+			<p>3.将这100组数值之和除以商品总需参与人次，然后取余数，余数加上10000001即为幸运号码。</p>
+			<p>4.本活动与本手机设备生产商无关!</p>
+			<button id="close-btn" type="button" class="mui-btn mui-btn-danger mui-btn-block" style="background-color: #D43047;height: 40px;text-align: center;">
+				<span style="display: block; margin-top: -10px;font-weight: bold;">确定</span>
+			</button>
+		</div>
+		<div  class="">
+		<ul class="mui-table-view mui-table-view-chevron" style="padding: 0; ">
+				<li  id="weiJieXiao" class="mui-table-view-cell yijieixao" style="list-style-type: none;background-color:white ;border-bottom: 1px solid #F9F9F9;" >
+						<p style="width: 100%;height: 20px;font-size: 20px;white-space:nowrap;color: #D43047;font-weight: bold;">
+							幸运号码
+						</p>
+						<br />
+						<p style="width: 100%;height: 20px;font-size: 14px;white-space:nowrap;">
+							=数值A/商品所需人次（取余）+1000001
+						</p>
+						<p style="width: 100%;height: 20px;font-size: 14px;white-space:nowrap;">
+							=？/6988（取余）+1000001
+						</p>
+						<p style=" width: 100%;height: 20px;font-size: 14px;white-space:nowrap;">
+							=？
+						</p>
+						<div id="open-btns"  style="float: right;margin-right: -40px;">
+							<p style="color: #D43047; width: 100%;height: 20px;font-size: 18px;white-space:nowrap;border-bottom: 1px solid #D43047;font-weight: bold;">
+							计算公式
+						</p>
+						</div>
+				</li>
+				<li  id="yiJieXiao" class="mui-table-view-cell yijieixao" style="list-style-type: none;background-color:white ;border-bottom: 1px solid #F9F9F9;" >
+						<p style="width: 100%;height: 20px;font-size: 20px;white-space:nowrap;color: #D43047;font-weight: bold;">
+							幸运号码
+						</p>
+						<br />
+						<div id="luckyNum">
+						</div>
+						<div id="open-btn" style="float: right;margin-right: -40px;">
+							<p href="#scrolls" style="color: #D43047; width: 100%;height: 20px;font-size: 18px;white-space:nowrap;border-bottom: 1px solid #D43047;font-weight: bold;">
+							计算公式
+						</p>
+						</div>
+				</li>
+				<li   id="" class="mui-table-view-cell yijieixao" style="list-style-type: none;background-color:white ;border-bottom: 1px solid #F9F9F9;" >
+						<div style="margin-right: -50px">
+						<p style="color: #D43047; width: 100%;font-size: 20px;white-space:nowrap;font-weight: bold;">
+							数值A
+						</p>
+						<br />
+						<p style="width: 100%;font-size: 14px;">
+							=商品最后的一个号码分配完毕时间点前本站全部商品的最后100个参与时间之和（包含该商品的最后一个人次的参与时间）
+						</p>
+						<br />
+						<p id="lastTimer" style="width: 100%;font-size: 14px;">
+						</p>
+						<br />
+						</div>
+				</li>
+				<li  id="yiJieXiaos" class="mui-table-view-cell yijieixao" style="list-style-type: none;background-color:white ;border-bottom: 1px solid #F9F9F9;" >
+						<div>
+						<span class="DBtime">夺宝时间</span>
+						<span class="DBname">用户账号</span>
+						</div>
+						<br />
+						<div id="timerList">
+						</div>
+				</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+			$(function() {
+				$("#open-btn").bind({
+					"touchstart":function() {
+						$("#test-dialog").dialog({
+							title:"<span style='font-size:18px;font-weight: bold;'>计算公式</span>",
+							width:300,
+							height:400
+						});
+					}
+				})
+				$("#close-btn").bind({
+					"touchstart":function() {					
+						$("#test-dialog").dialog({
+							close:true
+						});
+					}
+				})
+			})
+			$(function() {
+				$("#open-btns").bind({
+					"touchstart":function() {
+						$("#test-dialog").dialog({
+							title:"<span style='font-size:18px;font-weight: bold;'>计算公式</span>",
+							width:300,
+							height:400
+						});
+					}
+				})
+				$("#close-btns").bind({
+					"touchstart":function() {					
+						$("#test-dialog").dialog({
+							close:true
+						});
+					}
+				})
+			})
+			//截取url内容
+			var goodsReleaseId = request("goodsReleaseId");
+			//隐藏幸运号码
+			$("#weiJieXiao").hide();
+			$("#yiJieXiao").hide();
+			$("#yiJieXiaos").hide();
+	        //请求图片信息
+	        $.post(
+	        		'http://service.renwuke.com/shop/api/' + 'goods/open/detail',
+	        		{goodsReleaseId:"566"},
+	        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("返回的图片列表："+JSON.stringify(data));
+	        			var urlList=[]; 
+	        			urlList = data.data.list;
+	        			var timer=urlList.payHour;//取出支付时间
+	        			var userName=urlList.userName;//取出用户姓名
+	        			var status = data.data.status;//取出揭晓状态
+	        			if(status==2){//未揭晓
+	        				$("#weiJieXiao").show();
+	        			}
+	        			if(status==3){//已揭晓
+	        				$("#yiJieXiao").show();
+	        				$("#yiJieXiaos").show();
+	        				console.log("UrlList的值："+JSON.stringify(urlList));
+	        				if(window.screen.width>370){
+	        					for(var i=0;i<urlList.length;i++){
+		        				var btn="<div class='timer' style='white-space:nowrap;'>"
+								btn+="<p style='float: left;font-size:12px;'>"
+								btn+=urlList[i].payDate+"&nbsp;"+urlList[i].payHour+"&nbsp;"
+								btn+=""
+								btn+="<span style='color:#D43047;font-size:12px;'>("
+								btn+=urlList[i].payTime
+								btn+=")</span>"
+								btn+="</p>"
+								btn+="<p class='namer'>"
+								if(urlList[i].userName.length>9){
+									btn+=urlList[i].userName.substr(0, 9) + '...'
+								}else{
+									btn+=urlList[i].userName.substr(0, 9) 
+								}
+								btn+="</p>"
+								btn+="</div><br />"
+//							console.log("url的值："+urlList[i]);
+							$("#timerList").append(btn);
+		        			}
+	        				}
+		        			if(window.screen.width<370){
+	        					for(var i=0;i<urlList.length;i++){
+		        				var btn="<div class='timer' style='white-space:nowrap;'>"
+								btn+="<p style='float: left;font-size:12px;'>"
+								btn+=urlList[i].payDate+"&nbsp;"+urlList[i].payHour+"&nbsp;"
+								btn+=""
+								btn+="<span style='color:#D43047;font-size:12px;'>("
+								btn+=urlList[i].payTime
+								btn+=")</span>"
+								btn+="</p>"
+								btn+="<p class='namer'>"
+								if(urlList[i].userName.length>4){
+									btn+=urlList[i].userName.substr(0, 4) + '...'
+								}else{
+									btn+=urlList[i].userName.substr(0, 4) 
+								}
+//								btn+='稍等哈斯...'
+								btn+="</p>"
+								btn+="</div><br />"
+//							console.log("url的值："+urlList[i]);
+							$("#timerList").append(btn);
+		        			}
+	        				}
+		        			if(data.data.treasureNo!=""&&data.data.sum!=""){//给数值A赋值
+		        				var treasureNo=data.data.treasureNo;//取出数值A
+	        					var sum=data.data.sum;//取出商品所需人次
+		        				console.log("进入");
+        						var btns="<p style='width: 100%;height: 20px;font-size: 14px;white-space:nowrap;'>"
+								btns+=sum
+								btns+="/"
+								btns+=data.data.totalStock
+								btns+="（取余）+1000001"
+								btns+="</p>"
+								btns+="<p style='width: 100%;height: 20px;font-size: 14px;white-space:nowrap;'>"
+								btns+="="
+								btns+=data.data.mode
+								btns+="+1000001"
+								btns+="</p>"
+								btns+="<p style=' width: 100%;height: 20px;font-size: 14px;white-space:nowrap;'>"
+								btns+="="
+								btns+=treasureNo
+								btns+="</p>"
+							$("#luckyNum").append(btns);
+		        			}
+		        			if(data.data.lastOrderTime!=""){
+		        				var lastOrderTime=data.data.lastOrderTime;//取出商品所需人次
+		        				var  date = new Date(lastOrderTime);
+									Y = date.getFullYear() + '-';
+									M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+									D = date.getDate() + ' ';
+									h = date.getHours() + ':';
+									m = date.getMinutes() + ':';
+									s = date.getSeconds()+".";
+									ms= date.getMilliseconds();
+									console.log(Y+M+D+h+m+s+ms); 
+		        						console.log("进入");
+		        				var btnss="截止该商品最后参与时间【"
+								btnss+=Y+M+D+h+m+s+ms
+								btnss+="】网站所有商品的最后100条参与时间记录："
+							$("#lastTimer").append(btnss);
+		        			}
+	        			}
+	       		});
+	       		function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+	 	</script>
+	 	</div>
+	</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/auto_insurance.css">
+		<link rel="stylesheet" href="../css/app.css">
+		<link rel="stylesheet" href="../mui/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}
+			.mui-col-xs-3,
+			.mui-control-content {
+				overflow-y: auto;
+				height: 100%;
+			}
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+			.headerimg{
+				float: right;
+				background-color: #C9C9C9;
+				width: 34px;
+				font-size: 16px;
+				font-weight: bold;
+				text-align: center;
+				border-radius: 5px;
+				padding: 6px;
+				margin-right: 0px;
+			}
+			/*@media (min-width: 768px){
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}}*/
+			/*屏幕最小为768px时调用括号里的属性*/
+			/*@media (max-width: 767px) {
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}}*/
+			/*屏幕最大为768px时调用括号里的属性*/
+			/*@media (min-width: 768px) and (max-width: 1080px) {
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}}*/
+			/*屏幕的大小在 768和991之间时调用括号里的属性*/
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background-color: #D43047;">
+			<!--<a id="backs" class="mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>-->
+			<div id="backs" style="float: right;color: white;font-weight: bold;margin-top: 11px;font-size: 18px;margin-right: -2px;"><span>取消</span></div>
+			<div id="searchs" class="mui-input-row " style="float:left; margin-top: 7px;margin-left: -5px;background-color:white ;width: 85%;height: 32px; border-radius: 5px;">
+				<img src="../img/search@2x.png" class="headerimg"></img>
+				<input type="text" class="mui-input-clear" placeholder="请输入商品名称" style="float: left;white-space:nowrap;" disabled="disabled">
+			</div>
+		</header>
+		<div class="mui-content mui-row mui-fullscreen">
+			<div class="mui-col-xs-3">
+				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+				
+				</div>
+			</div>
+			<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+				
+					
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+//			var urls=window.location.href;
+//			console.log("urls:"+urls);
+			mui.init({//上拉尝试代码
+				pullRefresh: {
+					container: '#segmentedControlContents',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore:'无更多数据...',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh
+					}
+				}
+			});
+			 document.getElementById("searchs").addEventListener('tap', function() {
+    				window.location.href = "http://42.62.53.158/ios/duobao/index.html#/main/search";
+			});
+//			 document.getElementById("backs").addEventListener('tap', function() {
+//
+//			});
+			$("#backs").click(function(){
+    				window.location.href = "http://42.62.53.158/ios/duobao/index.html#/main/homepage";
+			});
+			var list = [];
+			function startFuc(){
+				console.log("触发的方法可以使用！");
+				$.post(
+	        		'http://service.renwuke.com/shop/api/' + 'goods/list',
+	        		{},
+	        		function(data){
+        			var data = $.parseJSON(data);
+        			console.log("图片列表返回的："+JSON.stringify(data));
+        			list=data.data.list;
+        			console.log("list的长度："+list.length);
+        			var contents = document.getElementById("segmentedControlContents");
+		        	html = [];
+		        	html.push('<div id="content" class="mui-control-content"><ul id="repeatUl" class="mui-table-view">');
+				for (var a = 0; a < list.length; a++) {
+//							for (j = 1; j < n; j++) {
+						html.push('<li class="mui-table-view-cell" style="list-style-type: none;height: 80px;border-bottom:1px solid #999 ;" >'
+							+'<div ng-click="godetail($index)" style="float: left;width: 30%;margin-top: -4px;margin-left: -8px;">'
+							+'<img src="'
+							+list[a].goodsIcon
+							+'" style="width: 65px;height: 65px;padding: 0px;"/>'
+							+'</div>'
+							+'<div ng-click="godetail($index)" style="float: left;width: 60%;margin-top: -2px;margin-left: 8px;">'
+							+'<h5 style="color: #000000;">'
+							+list[a].goodsName.substr(0, 8) + '...'
+							+'</h5>'
+							+'<div id="demo5" class="mui-demo-container" style="padding: 5px;width:80%;margin-left:-5px;">'
+							+'<p class="mui-progressbar mui-progressbar-danger" data-progress="'+((list[a].totalStock-list[a].usableStock)/list[a].totalStock)+'"><span></span></p>'
+							+'</div>'
+							+'<div id="">'
+							+'<span style="font-size: 12px;white-space:nowrap;color: #999; ">'
+							+'总需：'
+							+list[a].totalStock
+							+'</span>'
+							+'<span style="font-size: 12px;color: #999;white-space:nowrap;">'
+							+'&nbsp;&nbsp;剩余：'
+							+list[a].usableStock
+							+'</span>'
+							+'</div>'
+							+'</div>'
+							+'<div   style="float:right ; margin-top: -50px;margin-right: 5px;width:10%; ">'
+							+'<img click="goShopping()" src="../img/gouwuchehong.png" style="width: 28px;height: 28px;"/>'
+							+'</div>'
+							+'</li>'
+						);
+				}
+				html.push('</ul></div>');
+				contents.innerHTML = html.join('');
+				contents.querySelector('.mui-control-content').classList.add('mui-active');
+				//自定义颜色示例
+				mui("#demo5 .mui-progressbar").each(function () {
+					mui(this).progressbar({progress:this.getAttribute("data-progress")}).show();
+				});
+				
+		        	//==============这里写这个点击事件===================
+				$("ul").on("click","li",function(){
+					console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					var index = $("ul li").index(this);
+					var goodsId=list[index].goodsId;
+					var goodsIds=list[index].id;
+					localStorage.setItem("goodsId",goodsId);
+					localStorage.setItem("goodsIds",goodsIds);
+					window.location.href = "http://42.62.53.158/ios/duobao/index.html#/main/goodsDetails";
+					console.log("商品ID："+"商品id："+goodsIds);
+				});
+				//==============这里写这个点击事件===================	
+		        	});
+			}
+			startFuc();
+			
+ 			$.post(
+	        		'http://service.renwuke.com/shop/api/' + 'goods/category/list',
+	        		{},
+	        		function(data){
+        			var data = $.parseJSON(data);
+        			console.log("返回的图片列表："+JSON.stringify(data));
+        			var list = [];
+        			list=data.data.list;
+				console.log("list列表"+JSON.stringify(list));
+				var controls = document.getElementById("segmentedControls");
+				var html = [];
+				html.push('<div class="mui-control-item" onclick="startFuc()">全部商品</div>');
+				for (var i=0; i < list.length; i++) {
+					html.push('<a class="mui-control-item" href="#content">' + list[i].name + '</a>');
+//					var btn = '<a class="mui-control-item" href="#content">' + list[i].name + '</a>';
+//					$("#segmentedControls").append(btn);
+				}
+				controls.innerHTML = html.join('');
+				var m=0;
+				var goodsid="";
+				var goodsName="";
+				$("#segmentedControls a").each(function(){//遍历页面中a标签，并复制m为顺序号，给列表添加唯一标识，来去除id
+					this.id=m;
+					m++;
+					$(this).click(function(){//取出id
+						var n = this.id;
+						console.log("id的值："+n+"goodsName的值："+goodsName);
+						goodsid=list[n].id;
+						goodsName=list[n].name;
+						$.post(
+					        		'http://service.renwuke.com/shop/api/' + 'goods/list',
+					        		{categoryId:goodsid,goodsName:"",page:"1"},
+					        		function(data){
+					        		console.log("ID："+goodsid+"，名称："+goodsName)
+				        			var data = $.parseJSON(data);
+				        			console.log("图片列表返回的："+JSON.stringify(data));
+				        			var list = [];
+				        			list=data.data.list;
+				        			console.log("list的长度："+list.length);
+				        			var contents = document.getElementById("segmentedControlContents");
+						        	html = [];
+							    	html.push('<div id="content" class="mui-control-content"><ul id="repeatUl" class="mui-table-view">');
+									for (var a = 0; a < list.length; a++) {
+											html.push('<li class="mui-table-view-cell" style="list-style-type: none;height: 80px;border-bottom:1px solid #999 ;" >'
+												+'<div ng-click="godetail($index)" style="float: left;width: 30%;margin-top: -4px;margin-left: -8px;">'
+												+'<img src="'
+												+list[a].goodsIcon
+												+'" style="width: 65px;height: 65px;padding: 0px;"/>'
+												+'</div>'
+												+'<div ng-click="godetail($index)" style="float: left;width: 60%;margin-top: -2px;margin-left: 8px;">'
+												+'<h5 style="color: #000000;">'
+												+list[a].goodsName.substr(0, 8) + '...'
+												+'</h5>'
+												+'<div id="demo5" class="mui-demo-container" style="padding: 5px;width:80%;margin-left:-5px;">'
+												+'<p class="mui-progressbar mui-progressbar-danger" data-progress="'+((list[a].totalStock-list[a].usableStock)/list[a].totalStock)+'"><span></span></p>'
+												+'</div>'
+												+'<div id="">'
+												+'<span style="font-size: 12px;white-space:nowrap;color: #999; ">'
+												+'总需：'
+												+list[a].totalStock
+												+'</span>'
+												+'<span style="font-size: 12px;color: #999;white-space:nowrap;">'
+												+'&nbsp;&nbsp;剩余：'
+												+list[a].usableStock
+												+'</span>'
+												+'</div>'
+												+'</div>'
+												+'<div   style="float:right ; margin-top: -50px;margin-right: 5px;width:10%; ">'
+												+'<img ng-click="goShopping($index)" src="../img/gouwuchehong.png" style="width: 28px;height: 28px;"/>'
+												+'</div>'
+												+'</li>'
+											);
+									}
+								html.push('</ul></div>');
+								contents.innerHTML = html.join('');
+								contents.querySelector('.mui-control-content').classList.add('mui-active');
+								//自定义颜色示例
+								mui("#demo5 .mui-progressbar").each(function () {
+									mui(this).progressbar({progress:this.getAttribute("data-progress")}).show();
+								});
+								
+						        	//==============这里写这个点击事件===================
+								$("ul").on("click","li",function(){
+									console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+									var index = $("ul li").index(this);
+									var goodsId=list[index].goodsId;
+									var goodsIds=list[index].id;
+									localStorage.setItem("goodsId",goodsId);
+									localStorage.setItem("goodsIds",goodsIds);
+									window.location.href = "http://42.62.53.158/ios/duobao/index.html#/main/goodsDetails";
+									console.log("商品ID："+goodsId+"商品id："+goodsIds);
+								});
+							//==============这里写这个点击事件===================	
+					     });
+					});
+				});
+				//默认选中第一个
+				controls.querySelector('.mui-control-item').classList.add('mui-active');
+			});
+			
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				console.log("下拉刷新出发！");
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">列表 ' + (i + 1) + '</a>';
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				console.log("上拉加载触发！");
+				setTimeout(function() {
+					mui('#segmentedControlContents').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					mui('#segmentedControlContents').pullRefresh().refresh(true);
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = '<a class="mui-navigate-right">Item ' + (i + 1) + '</a>';
+						table.appendChild(li);
+					}
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+//						mui('#segmentedControlContents').pullRefresh().pullupLoading();
+					}, 1000);
+//
+				});
+			} else {
+				mui.ready(function() {
+//					mui('#segmentedControlContents').pullRefresh().pullupLoading();
+				});
+			}
+			//页面顶部进度条
+				mui('body').progressbar({
+					progress: 0
+				}).show();
+				simulateLoading(0);
+			/**
+			 * 通过随机数模拟业务进度，真实业务中需根据实际进度修改
+			 * @param {Object} container
+			 * @param {Object} progress
+			 */
+			function simulateLoading(container, progress) {
+				if (typeof container === 'number') {
+					progress = container;
+					container = 'body';
+				}
+				setTimeout(function() {
+					progress += Math.random() * 20;
+					mui(container).progressbar().setProgress(progress);
+					if (progress < 100) {
+						simulateLoading(container, progress);
+					} else {
+						mui(container).progressbar().hide();
+					}
+				}, Math.random() * 200 + 200);
+			}
+		</script>
+
+	</body>
+
+</html>

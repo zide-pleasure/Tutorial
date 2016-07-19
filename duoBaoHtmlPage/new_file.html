@@ -1,0 +1,278 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>移动在线商户测试-5000001436</title>
+
+<script src="http://web.iapppay.com/pub/js/jquery-1.11.3.js"></script>
+<script src="http://ipay.test.happyapk.com:9002/h5/test114/js/test.js"></script>
+<script src="http://ipay.test.happyapk.com:9002/pub/js/jquery.qrcode.min.js"></script>
+<style>
+button {
+	height: 40px;
+	width: 300px;
+	margin: 5px;
+}
+</style>
+</head>
+<body>
+	<div align="center">
+		appUserId : <input id="appuserid"></input><br /> <a href="#"
+			onclick="aiPay1(1);" class="aibei-pay">按次</a> <br /> <a href="#"
+			onclick="aiPay1(2);" class="aibei-pay">1.0元/2周，到期自动续费(包账期)</a><br />
+		<a href="#" onclick="aiPay1(3);" class="aibei-pay">1元5次(包次数)</a><br />
+		<a href="#" onclick="aiPay1(4);" class="aibei-pay">5元1天(包时长)</a><br />
+		<a href="#" onclick="aiPay1(5);" class="aibei-pay">首次洗车，后续不收费（6元）(买断)</a>
+		<br /> 开放价格: <input id="price" type="text" style="width: 80px;"></input>元
+		<a href="#" onclick="aiPay1(6);" class="aibei-pay"
+			style="width: 80px;">购买</a><br /> <a href="#"
+			onclick="aiPay1(6,0.01);" class="aibei-pay">0.01元</a> | <a href="#"
+			onclick="aiPay1(6,0.1);" class="aibei-pay">0.1元</a> | <a href="#"
+			onclick="aiPay1(6,1);" class="aibei-pay">1元</a><br>
+	</div>
+	<br />
+	<br />
+	<div id="qrcode" align="center"></div>
+</body>
+<script type="text/javascript">
+var ll = window.location.href;
+var inx = ll.indexOf(".jsp");
+if(inx>0){
+	ll=ll.substring(0,inx+4);
+}
+var waresinfo = {
+		'1' : '按次钻石1元包',
+		'3' : '2元5次_包次数',
+		'4' : '3元天_包时长',
+		'5' : '首次收费后续免费_买断',
+		'6' : '开放价格'
+	}
+	var appId = '3001908505';
+	var order = {
+		'requestUrl' : 'http://ipay.iapppay.com:9999/payapi/order',
+		'appid' : appId,
+		'Key' : 'MIICXQIBAAKBgQDYwEbzhPIc6GwJLH5eXElx8bUeMhfQZoKG54dH5j7y0r+HCU6hc0RSvtcWLdrnXABCyaRbj33xTY9aLrKgPKoEJNkhLMRHnEjdnq+eNzmfk9Y4thh/GqUCWq/8Mpdgx9SOsBGoDZLOgulIACSa2CTcvTc7VrTzuJKZGunWqSaatwIDAQABAoGAdwN0sefwzQCtuYfNx2AjD8apLXBR9SMkTpC4jjkVnV0svyfUHgBdppWVIl+BUAILPqDbd07d124/5UO43xUQQH15VVArKQoNhfuPKkE5/oI3UF2uwPjkVdxcVUTIUcG6CkqKazbAKDcWT1NW3cBri477E25aJNnlAQAX4qoHf4kCQQDxwCB77WRmeu6SOmdmylpAg9KSqoAlI9wH9iPP9Wg13Ii345Ueln2BXR77QaGy6KzRL6+H0F5xQGOxzpSjFOcbAkEA5YbsfYeB2G2dtn2GUX1EHVWcQyaF9U2Yg2nOs8O5MpspxTz3KLMQI18GjcuuXDmMS2VxHsemExypZ6YeiD3IlQJBAIrN8pjVRAlnWiXRrN8jHlDen4Agr3UjsslLdWKJGG2ck09qN4uZgrRNQGWpWGt+FwQA6jsD08YY32UPJN7COLMCQQCbqwZ5nI3T24Q7YKbYXbz0qDtyz43K8PWfKwOlp/jS+ak6vD5kvA0V8DzhrmJy6hTcjdBKr91S2P2L7n6GqGCBAkBoUNUu95FPB+t3B8iHOihQTrXO3XsFPdC1o/n0SDWvQqUtdbFXTI0f9sPKLK4OrHjgoJzZjrxAnaxSdGuKMfBn',
+		'cpprivateinfo' : 'h5123test',
+		'cporderid' : new Date().getTime(),
+		'currency' : 'RMB',
+		'notifyurl' : 'http://101.251.205.114:34200/test/cpCallback.jsp'
+	};
+
+	var openPrice = 6;
+	function callbackData(datas) {
+		//alert(datas);//'http://219.143.16.178:32000/payapi/order',
+	}
+	
+	function getEncStr(encStr){
+		order.encStr =  encodeURI(encStr);
+		var retEnstr;
+		$.ajax({
+			url : '/test/encrypStr.jsp',
+			type : 'POST',
+			data : order,
+			async : false,
+			dataType : 'json',
+			success : function(data) {
+				if (data.signStr !== undefined) {
+					//showPayWindow(data.transid,function(data){alert("测试回调:RetCode=" + data.RetCode+":TransId=" + data.TransId + ":OrderStatus=" + data.OrderStatus);});
+					retEnstr = data.signStr;
+				} else {
+					alert(data.errmsg);
+				}
+			},
+			error : function(e) {
+				alert(e);
+			}
+		});
+		return retEnstr;
+	}
+	
+	function aiPay1(waresid, money){
+		var transId = serverOrder(waresid, money);
+		if (transId == undefined){
+			return
+		}
+		
+		var data = '{transid:"'+transId+'",redirecturl:"'+ll+'",cpurl:"http://www.sina.com.cn/cpurl"}';
+		var sign = getEncStr(data)
+		window.location.href='https://web.iapppay.com/h5/exbegpay?transdata='+encodeURIComponent(data)+'&sign='+encodeURIComponent(sign)+"&signtype=RSA";
+	}
+</script>
+</html>-->
+	
+	
+	
+	
+	
+	
+	
+	
+	{
+    "data": {
+        "data": {
+            "openingList": [
+                {
+                    "id": 941,
+                    "goodsReleaseId": 659,
+                    "goodsReleasePeriod": 11,
+                    "goodsName": "小米手环(光感版)",
+                    "totalStock": 120,
+                    "goodsIcon": "http://images.news.quzhuan.me/shop/goods/0200000001/icon/1467099637374.jpg",
+                    "userName": null,
+                    "userHeading": null,
+                    "userBuyCount": 0,
+                    "userCount": 14,
+                    "treasureNo": null,
+                    "openTime": 65,
+                    "lotteryTime": 1468222046054,
+                    "userAddress": null,
+                    "status": 2,
+                    "orderId": 0,
+                    "isShow": 1,
+                    "period": 11
+                }
+            ],
+            "openedList": [
+                {
+                    "id": 940,
+                    "goodsReleaseId": 663,
+                    "goodsReleasePeriod": 9,
+                    "goodsName": "中国移动100元充值卡（可用于直充中国移动话费）",
+                    "totalStock": 120,
+                    "goodsIcon": "http://images.news.quzhuan.me/shop/goods/0700000002/icon/1467681682743.jpg",
+                    "userName": "猫猫0908",
+                    "userHeading": "http://wx.qlogo.cn/mmopen/DOp3JiavMNOfypHjKZxDyjK2yWZqc2ZnQWbAsj8OxXvW5jwjRjf7mq9mFBy8C7SgGDWDfeEqdVOmTBXrZGRFImeRVk4D5yOSt/0",
+                    "userBuyCount": 50,
+                    "userCount": 5,
+                    "treasureNo": "10000002",
+                    "openTime": 0,
+                    "lotteryTime": 1468221823843,
+                    "userAddress": "江西省 九江市",
+                    "status": 3,
+                    "orderId": 4733,
+                    "isShow": 1,
+                    "period": 9
+                },
+                {
+                    "id": 939,
+                    "goodsReleaseId": 662,
+                    "goodsReleasePeriod": 17,
+                    "goodsName": "50元Q币 自动充值 即时到账",
+                    "totalStock": 60,
+                    "goodsIcon": "http://images.news.quzhuan.me/shop/goods/0700000008/icon/1467795289238.jpg",
+                    "userName": "卡卡",
+                    "userHeading": "http://wx.qlogo.cn/mmopen/DOp3JiavMNOcVGvSqxn1hiaYpibgz52bmqgOwuCFarC8uwQ5uiaFIMLl3PSxHN0HM0FObzk8kSgTWdhHreRRdWIkibFQBwP8K22c0/0",
+                    "userBuyCount": 20,
+                    "userCount": 6,
+                    "treasureNo": "10000039",
+                    "openTime": 0,
+                    "lotteryTime": 1468221780665,
+                    "userAddress": "江苏省 南京市",
+                    "status": 3,
+                    "orderId": 4735,
+                    "isShow": 1,
+                    "period": 17
+                }
+            ],
+            "page": 1
+        },
+        "code": 0,
+        "msg": null
+    },
+    "status": true,
+    "config": {
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "url": "http://service.renwuke.com/shop/api/index/open/record/list",
+        "method": "POST",
+        "params": {},
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        }
+    }
+}
+
+
+
+
+
+
+搜索关键词：{
+    "data": {
+        "data": {
+            "list": [
+                
+            ]
+        },
+        "code": 0,
+        "msg": null
+    },
+    "status": 200,
+    "config": {
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "url": "http://service.renwuke.com/shop/api/goods/hot/word/list",
+        "method": "POST",
+        "params": {
+            
+        },
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        }
+    }
+}
+
+
+
+{
+    "data": {
+        "data": {
+            "total": 128,
+            "page": 1,
+            "search": {
+                "field": null,
+                "categoryId": 0,
+                "page": 1,
+                "pageSize": 10,
+                "name": "6s",
+                "firstRowNum": 0
+            },
+            "list": [],
+            "countPage": 13
+        },
+        "code": 0,
+        "msg": null
+    },
+    "status": 200,
+    "config": {
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "url": "http://service.renwuke.com/shop/api/goods/list",
+        "method": "POST",
+        "params": {
+            "categoryId": 0,
+            "name": "6s",
+            "page": 1
+        },
+        "headers": {
+            "Accept": "application/json, text/plain, */*"
+        }
+    }
+}

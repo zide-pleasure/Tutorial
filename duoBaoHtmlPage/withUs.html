@@ -1,0 +1,78 @@
+<!--
+	在线客服
+	by youjie 
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" content = "telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title></title>
+		<script src="angular.js"></script>
+		<script src="mui.min.js"></script>
+		<link href="mui.min.css" rel="stylesheet"/>
+		<style type="text/css">
+		.withus{
+			font-size: 22px;
+			font-weight: bold;
+			color: #D43047;
+			margin-left: 20px;
+			margin-top: 20px;
+		}
+		.qqs{
+			margin-top: 15px;
+		}
+		.qqscard p{
+			margin-top: 10px;
+			margin-left: 10px;
+			font-size: 16px;
+		}
+		.weChats{
+			margin-top: 15px;
+			
+		}
+		.wescard p{
+			margin-top: 10px;
+			margin-left: 10px;
+			font-size: 16px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content ">
+			<div class="withus">联系方式</div>
+			<div class="qqs">
+				<div class="mui-card qqscard">
+					<p>QQ客服：</p>
+					<p>QQ账号：1404811062<br/><span style="margin-left: -10px;">（添加账号即可与客服联系）</span></p>
+				</div>
+			</div>
+			<div class="weChats">
+				<div class="mui-card wescard">
+					<p>微信客服：</p>
+					<p>电话号码：1404811062<br/><span style="margin-left: -10px;">（添加账号即可与客服联系）</span></p>
+				</div>
+			</div>
+		</div>
+	<script type="text/javascript">
+		//截取url内容
+		var token = request("token");
+		console.log("token值："+token);
+		plus.nativeUI.toast(token,{verticalAlign:"top"});
+		function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+	</script>
+	</body>
+</html>

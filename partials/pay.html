@@ -1,0 +1,131 @@
+<!--<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>一元趣筹</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<!--<link rel="stylesheet" href="mui.min.css">-->
+		<!--App自定义的css-->
+		<!--<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="mui.min.js"></script>-->
+		<style type="text/css">
+			.bodys{
+				height: auto;
+				width: 100%;
+			}
+			.btns{
+				width: 80%;
+				margin-left: 10%;
+				margin-top: 20%;
+			}
+			.mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before
+			{
+			    color: #D43047;
+			}
+			.center{
+				display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+				display: -moz-box; /* OLD: Firefox (can be buggy) */
+				display: -ms-flexbox; /* OLD: IE 10 */
+				display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+				display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			 	-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+			}
+		</style>
+	<!--</head>-->
+	
+	<body class="bodys" >
+		<!--<header class="mui-bar mui-bar-nav" style="background-color: #D43047;">
+		<span id="" class="center" style="color: white;font-size: 20px;font-weight: bold;margin-top: 10px;">
+			订单支付
+		</span>
+		</header>-->
+		<div class="" style="margin-top: 48px;">
+			<ul class="mui-table-view" >
+            <li class=" " style="list-style-type: none;height: 50px;">
+            		<div ng-click="checkAll()"  class="" style="white-space:nowrap;">
+            			<span  style="float: left;font-size: 20px;white-space:nowrap;margin-top: 15px;margin-left: 10px;font-weight: 550;">支付金额</span>
+            			<span  style="float: right; font-size: 20px;white-space:nowrap;margin-top: 15px;margin-right: 10px;font-weight: 550;">
+            				<span id="total" style="color: #D43047;font-weight: 400;">
+            					{{pay.amount}}
+            				</span>
+            				夺宝币
+            			</label>
+            		</div>
+            </li>
+            </ul>
+            <ul class="mui-table-view" >
+			<li class=" " style="list-style-type: none;height: 60px;white-space:nowrap;">
+				<div id="" class="mui-input-row mui-checkbox">
+				<div style="float: left;">
+				<img src="img/BCEO9_Q1{F74K6KA6@UP5(E.jpg" style="width: 40px;height: 38px;margin-top: 10px;margin-left: 10px;"/>
+				</div>
+     			<div class="" style="float: left;margin-top: 10px;font-size: 18px;">
+     				<span style="margin-left: 10px;color: #333;">余额支付</span>
+     				<img src="img/tuijian.png" style=" width: 38px;height: 17px;margin-bottom: -2px;"/>
+     				<span style="display: block;margin-left: 10px; font-size: 12px;color: #999;margin-top: 5px;">使用夺宝币支付，只扣除您余额内的夺宝币。</span>
+					<!--<input id="checkboxs" style="margin-top: 10px;margin-right: -10px;" name="checkbox1" value="" type="checkbox" disabled="disabled">-->
+     			</div>
+				</div>
+			</li>
+           </ul>
+		</div>
+		<div id="enterPay">
+		<button ng-click="payAmount()" type="button" class="mui-btn mui-btn-danger mui-btn-block btns" style="background-color: #D43047;border-radius: 8px;">确认支付</button>
+		</div>
+		<!--<script type="text/javascript">
+			$("#checkboxs").attr("checked",true);
+			var token = request("token");
+			var cartIds = request("cartIds");
+			var amount = request("amount");
+			$("#total").text(amount);
+			localStorage.setItem("amount",amount);
+				document.getElementById("enterPay").addEventListener('tap',function () {
+				console.log("sajdlksajdjas");
+				$.post(
+					'http://service.renwuke.com/shop/api/'+ 'pay/goods/money/buy',
+		        		{token:token,cartIds:cartIds},
+		        		function(data){
+	        			var data = $.parseJSON(data);
+	        			var code = data.code;
+	        			console.log("充值面额金额："+JSON.stringify(data));
+	        			if(code=="0"){
+	        				window.location.href="http://www.renwuke.com/shop/page/successPay.html";
+	        			}else{
+	        				mui.alert('支付请求失败!', '非常抱歉', function() {
+	        					window.location.href="quchou://yuegoumaishibai";
+						});
+	        			}
+		        		}
+				);
+			});
+			  
+			function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+		</script>-->
+	</body>
+<!--</html>-->

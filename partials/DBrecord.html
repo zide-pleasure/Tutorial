@@ -1,0 +1,78 @@
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	
+	.fcc {
+		display: -webkit-flex;
+		display: flex;
+		flex-flow: column;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+	
+	.faa {
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+	}
+	.fl{
+		float: left;
+	}
+	.fr{
+		float: right;
+	}
+	.topBar {}
+	
+	.dbtopBar li {
+		width: 33%;
+		height: 50px;
+	}
+	
+	.active {
+		color: #e3163d;
+		border-bottom: 2px solid #e3163d;
+	}
+	
+	body {
+		background: #f1f1f1;
+	}
+</style>
+<div class="DBrecordContainer">
+	<ul class="dbtopBar faa" style="background: white;position: fixed; top:30; left: 0; width: 100%;" ng-model="home">
+		<li class="fcc" ng-click="tabDB(0)" ng-class="{active:isActiveTab(0)}">全部</li>
+		<li class="fcc" ng-click="tabDB(1)" ng-class="{active:isActiveTab(1)}">进行中</li>
+		<li class="fcc" ng-click="tabDB(3)" ng-class="{active:isActiveTab(3)}">已揭晓</li>
+	</ul>
+	<div ng-hide="nodblist" class="fcc" style="padding-top: 40px;">
+		<div class="gantan" style="width: 90px; height: 90px; margin-top: 40px;"><img src="img/gantan.png" style="width: 100%;height: 100%;" /></div>
+		<div style="padding: 10px;color:grey;"> 暂无记录</div>
+	</div>
+	<div class="record" ng-hide="dblist" style="padding-top: 30px;">
+		<ul>
+			<li class="faa" ng-repeat="x in list" style="width: 100%; background:#ffffff; height: 21RE0px;overflow: hidden; padding: 4px 6px;border-bottom: 1px solid darkgray;">
+				<div style="width: 33%; height: auto;"><img src={{x.goodsIcon}}  width="100%" height="100%"/></div>
+				<div style="width: 63%;">
+					<div>
+						<h3 style="font-size: 16px; font-weight: 500;">{{x.goodsName}}</h3>
+					</div>
+					<div class="faa"><p><span>期号：</span><span>{{x.periods}}</span></p><p>我参与次数<span style="color: #d52f45;">{{x.buyCount}}</span></p></div>
+                     <ul style="text-align: left; width: 100%; color: #a1a1a1; font-size: 13px;" >
+                     	<li >获奖者：<span style="color: #0b94fe;">{{x.userName}}</span></li>
+                     	<li>幸运号码：<span>{{x.treasureNo}}</span></li>
+                     	<li>获奖者参与<span>{{x.userBuyCount}}</span>人次</li>
+                     	<li>揭晓时间：<span>{{x.openTime|date:'yyyy-MM-dd HH:mm:ss'}}</span></li>
+                     </ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,70 @@
+<!--
+	图文详情
+	by youjie
+-->
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8" content = "telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title></title>
+		<script src="../mui/js/mui.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<link href="../mui/css/mui.min.css" rel="stylesheet"/>
+		<style type="text/css">
+		.goodsImg{
+			width: 100%;
+			height: auto;
+		}
+		.center{
+				display: -webkit-box; /* OLD: Safari, iOS 6 and earlier; Android browser, older WebKit */
+				display: -moz-box; /* OLD: Firefox (can be buggy) */
+				display: -ms-flexbox; /* OLD: IE 10 */
+				display: -webkit-flex; /* FINAL, PREFIXED, Chrome 21+ */
+				display: flex; /* FINAL: Opera 12.1+, Firefox 22+ */
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-ms-flex-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+			 	-webkit-box-pack: center;
+				-moz-box-pack: center;
+				-ms-flex-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+			}
+		.goodsTop{
+			margin-top: 47px;
+		}
+		</style>
+	</head>
+	<body ng-app="picAndWordModule" >
+		<header class="mui-bar mui-bar-nav" style="background-color: #D43047;">
+			<a id="backs" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;"></a>
+			<h1 class="mui-title" style="color: white;font-weight: bold;">图文详情</h1>
+		</header>
+		<div id="goodsImg" class="goodsTop" >
+		 	<!--<img src="" class="goodsImg"/>-->
+		</div>
+		<script type="text/javascript">
+			var goodsId = localStorage.getItem("goodsIds");
+	        //请求图片信息
+	        $.post(
+	        		'http://service.renwuke.com/shop/api/' + 'goods/image/list',
+	        		{goodsId:goodsId},
+	        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("返回的图片列表："+JSON.stringify(data));
+	        			var urlList=[]; 
+	        			urlList = data.data.list;
+	        			console.log("UrlList的值："+JSON.stringify(urlList));
+	        			for(var i=0;i<urlList.length;i++){
+	        				console.log("进入");
+	        				var btn="<img src='"+urlList[i]+"' style='width: 100%;height: auto;vertical-align:bottom; display:block;'/>"
+						console.log("url的值："+urlList[i]);
+						$("#goodsImg").append(btn);
+	        			}
+	       		});
+	 	</script>
+	</body>
+</html>

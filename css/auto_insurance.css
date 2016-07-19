@@ -1,0 +1,119 @@
+.phone-input{ 
+padding-right:20px; 
+background:url("images/44*22.gif") no-repeat scroll right center transparent; 
+} 
+.height{
+	height:50px;
+}
+.heightnull{
+	height: 5px;
+}
+.body{
+	background-color:#F0F0F0;
+}
+.mui-content{
+	background-color: #FFFFFF;
+}
+//首页面
+	.li{
+			list-style-type: none;
+		}
+	.lifirst{
+		font-size: 14px;
+		height: 23px;
+		margin-top: 5px;
+		margin-left: 8px;
+		margin-right: 8px;
+		border-bottom: 2px solid #f0f0f0;
+	}
+	#lisecond img {
+		height: 90px;
+		width: 90%;
+	}
+	.p-price{
+		font-size: 16px;
+		margin-left: 5px;
+		color: #D43047;
+	}
+	.p-info span{
+		margin-bottom: -10px;
+	}
+	.imgtop{
+		margin-top: 10px;
+	}
+	.lisecond{
+		height: 110px;
+		width: 33.8%;
+		float: left;
+		/*margin-top: 10px;*/
+		font-size: 8px;
+		/*border-right: 1px solid #d43047;*/
+		/*border-bottom: 1px solid #d43047;*/
+	}
+	.lisecond span{
+		margin-top: 10px;
+	}
+	.lisecond2{
+		height: 110px;
+		width: 33.1%;
+		float: left;
+		/*margin-top: 10px;*/
+		font-size: 7px;
+		/*border-right: 1px solid #d43047;*/
+		/*border-bottom: 1px solid #d43047;*/
+	}
+	.lisecond2 span{
+		margin-top: 10px;
+	}
+	.lisecond3{
+		height: 110px;
+		width: 33.1%;
+		float: right;
+		font-size: 8px;
+		border-right:none;
+		/*border-bottom: 1px solid #d43047;*/
+	}
+	.lithird2N1{
+		height: 240px;
+		width: 50%;
+		float: left;
+		margin-top: 5px;
+		font-size: 8px;
+		border: 1px solid #F0F0F0;
+	}
+	.lithird2N1 img{
+		height: 60%;
+		width: 100%;
+	}
+	.thirdfont{
+		height: 40%;
+		margin: 5px;
+	}
+	.thirdfont input{
+		right: 5px;
+		bottom: 5px;
+	}
+	.thirdleft{
+		width: 65%;
+		float: left;
+	}
+	.loading {
+        width: 70%;
+        height: 4px;
+        border-radius: 10px;
+        border: 1px solid #666;
+        margin-bottom: 3px;
+        box-shadow: 0px 0px 0px 0px white;
+    }
+     .searchbtn{
+	float:right ;
+	width:32px;
+	height:30px;
+	border-radius:5px;
+	background:#CCCCCC url(../img/search@2x.png) no-repeat center;
+	background-size:50%;
+	border:none;
+	color:#CCCCCC;
+	background-size:22px;
+}
+

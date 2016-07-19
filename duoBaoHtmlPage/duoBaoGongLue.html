@@ -1,0 +1,89 @@
+<!--
+	夺宝攻略
+	by youjie
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" content = "telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title></title>
+		<script src="angular.js"></script>
+		<script src="mui.min.js"></script>
+		<link href="mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+		.mui-table-view-cell:after{
+			left:0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell " style="list-style-type: none;height: 50px;border-bottom: 8px solid #F0F0F0;">
+					<div ng-click="checkAll()" class="" style="white-space:nowrap;">
+						<span style="float: left;font-size: 17px;white-space:nowrap;margin-top: 5px;">夺宝规则介绍</span>
+						<span style="color: #D43047;float: right; font-size: 17px;white-space:nowrap;margin-top: 5px;">
+            					(100%公正公平公开)
+            				</span>
+					</div>
+				</li>
+				<li class="mui-table-view-cell " style="list-style-type: none;border-bottom: 8px solid #F0F0F0;">
+					<div>
+						<p style="font-size: 16px;color: #D43047;">1.幸运号码的组成及介绍</p>
+					</div>
+					<!--<div style="float: left;margin-left: 10%;">
+						<span style="font-size: 15px;color: #999;">规则数</span><br />
+						<span style="font-size: 15px;color: #999;">100</span>
+					</div>
+					<div style="float: left;margin-left: 13%;font-weight: bold;margin-top: 10px;">
+						<span style="font-size: 15px;color: #999;">+</span>
+					</div>
+					<div style="float: right;">
+						<span style="font-size: 15px;color: #999;">1~n(n为奖品总需人次)</span><br />
+						<span style="font-size: 15px;color: #999;">1~1000</span>
+					</div>
+					<br /><br />-->
+					<div style="margin-top: 10px;">
+						<p style="font-size: 13px;">"10000001"为原始数</p>
+						<p style="font-size: 13px;">数值A=商品的最后一个号码分配完毕时间点前本站全部商品的最后100个参与时间之和(包含该商品的最后一人次的参与时间）</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell " style="list-style-type: none;border-bottom: 1px solid #F0F0F0;">
+					<div>
+					<p style="font-size: 16px;color: #D43047;">2.如何计算获奖幸运号</p>
+					<p style="font-size: 13px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;取该商品最后购买时间前网站所有商品100条购买时间记录（限时揭晓商品取截止时间前网站所有商品100条购买时间记录）;</p>
+					<p style="font-size: 13px;margin-left: 10px;">时间按时、分、秒、毫秒依次排列组成一组数值</p>
+					</div>
+					<div style="width: 50%;">
+					<p style="font-size: 13px;border-bottom: 1px solid #999999;margin-left: 20%;padding-left: 20px;">
+						100组数值之和
+					</p>
+					</div>
+					<div>
+						<p style="margin-left: 16%">
+							商品总需人次
+						</p>
+					</div>
+					<div style="float: left;margin-left: 70%;margin-top: -32px;">
+						<p style="">
+							=余数
+						</p>
+					</div>
+					<div>
+						<p style="font-size: 16px;color: #D43047;">3.得出幸运号</p>
+						<p style="font-size: 13px;margin-left: 25%;">
+							余数+1000001=幸运号码
+						</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell " style="list-style-type: none;border-bottom: 1px solid #333;">
+					<p style="font-size: 16px;color: #D43047;">4.什么是：“余数”?</p>
+					<p style="font-size: 13px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当两个整数相除的结果不能以整数商表示时，余数是其“余留下的量”。</p>
+					<p style="font-size: 13px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;举例：25除以4，商为6，余数为1</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

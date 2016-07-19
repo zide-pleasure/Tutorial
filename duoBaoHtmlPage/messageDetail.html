@@ -1,0 +1,114 @@
+<!--
+	消息详情
+	by youjie
+	2016-6-23
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" >
+		<title></title>
+		<script src="angular.js"></script>
+		<script src="mui.min.js"></script>
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<link href="mui.min.css" rel="stylesheet"/>
+		<style type="text/css">
+			.mui-table-view-cell:after{
+			left:0;
+			}
+		</style>
+		<script type="text/javascript">
+			//截取url内容
+	        var token = request("token");
+			var id = request("id");
+	        //请求图片信息
+	        $.post(
+	        		'http://service.renwuke.com/shop/api/' + 'msg/read',
+	        		{token:token,id:id},
+	        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("返回的消息详情："+JSON.stringify(data));
+	        			var messages = data.data.message;
+	        			console.log("UrlList的值："+JSON.stringify(messages));
+	        			var date = new Date(messages.createTime);
+	        			Y = date.getFullYear() + '-';
+					M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+					D = date.getDate() + ' ';
+					var time = Y+M+D;
+					console.log("年月日为："+time);
+	        			if(messages.title!=null){
+	        				console.log("进入");
+	        				var btn="<li class='mui-table-view-cell' style='list-style-type: none;background-color:white ;border-bottom: 2px solid #F9F9F9;' >"
+						btn+="<div style='float: left;'>"
+						btn+="<span style='font-size: 18px;'>"
+						btn+=messages.title
+						btn+="</span>"
+						btn+="</div>"
+						btn+="<br />"
+						btn+="<br />"
+						btn+="<div style='margin-right: -50px;'>"
+						btn+="<p>"
+						btn+="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+messages.content
+						btn+="</p>"
+						btn+="</div>"
+						btn+="<br />"
+						btn+="<div style='float: right;margin-right: -50px;'>"
+						btn+="<span style='color: #999999;font-size: 16px;'>"
+						btn+=time
+						btn+="</span>"
+						btn+="</div>"
+						btn+="</li>"
+						$("#message").append(btn);
+						window.onload = function(){
+						   window.location.reload();
+						   //或者
+						// window.location.href=window.location.href;
+						}
+	        			}else{
+	        				alert('sasdasdsads');
+	        				console.log("请求异常！");
+	        			}
+	       		});
+	       		function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+	 	</script>
+	</head>
+	<body>
+		<div class="">
+			<ul id="message" class="mui-table-view mui-table-view-chevron" >
+				<!--<li class='mui-table-view-cell' style='list-style-type: none;background-color:white ;border-bottom: 2px solid #F9F9F9;' >
+				<div style='float: left;'>
+				<span style='font-size: 18px;'>
+				中奖信息
+				</span>
+				</div>
+				<br />
+				<br />
+				<div style='margin-right: -50px;'>
+				<p>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您中奖了，随后工作人员会跟您取得联系，请不要着急！请不要着急！请不要着急！
+				</p>
+				</div>
+				<br />
+				<div style='float: right;margin-right: -50px;'>
+				<span style='color: #999999;font-size: 16px;'>
+				2016-12-12
+				</span>
+				</div>
+				</li>-->
+			</ul>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	
+	body {
+		background: #f1f1f1;
+	}
+	.faa{
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content:space-around;
+	    justify-content:space-around;
+	}
+	input:focus {
+		outline: none;
+	}
+	
+	.reContainer {
+		padding: 15px 0;
+	}
+	
+	.resigerinputList input {
+		margin-bottom: 0;
+		width: 56%;
+		border: none;
+		color: #bdbdbd;
+		text-indent: 8px;
+		line-height: 15px;
+		height: 15px;
+		font-size: 15px;
+	}
+	
+	.resigerinputList {
+		width: 90%;
+		margin: 5% auto;
+		margin-top: 64px;
+		background: #ffffff;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	
+	.resigerinputList li {
+		width: 100%;
+		height: 60px;
+	}
+	
+	.resigerinputList li p {
+		width: 30%;
+		height: 60px;
+		line-height: 60px;
+		color: #dc2c52;
+	}
+	
+	.resigerinputList li span {
+		height: 40px;
+		width: 30px;
+		display: block;
+		margin-left: 7px;
+	}
+	
+	.resigerinputList li:nth-of-type(1) span {
+		background: url(img/图层-60-拷贝@2x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.resigerinputList li:nth-of-type(2) span {
+		background: url(img/3224@2x.png) no-repeat;
+		background-size: 100% 100%;
+		height: 25px;
+	}
+	
+	.resigerinputList li:nth-of-type(3) span {
+		background: url(img/图层-60@2x.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	
+	.btn-register {
+		width: 90%;
+		margin: 5% auto;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		background: #d43048;
+		font-size: 17px;
+		font-weight: 800;
+		border-radius: 8px;
+		color: #fffdff;
+		display: block;
+		padding: 0 0;
+	}
+	
+	.check-box {
+		margin-left: 5%;
+	}
+</style>
+<div class="reContainer">
+	<ul class="resigerinputList">
+
+		<li class="faa">
+			<span></span>
+			<input id="phone_txt" type="text" maxlength="11" ng-model='user.rephone' placeholder="请输入手机号码" />
+			<p ng-click="sendCode()" ng-hide="sendcode">发送验证码</p>
+			<p ng-hide="sendsucc">发送成功</p>
+		</li>
+		<li class="yzm faa">
+			<span></span>
+			<input id="yzcode" type="text" maxlength="4" ng-model='user.recode' placeholder="请输验证码" />
+			<p></p>
+		</li>
+
+		<li class="faa">
+			<span></span>
+			<input id="pwd" type="password" maxlength="16" ng-model='user.repwd' placeholder="请设置6-20位密码" />
+			<p></p>
+		</li>
+
+	</ul>
+	<button class="btn-register" ng-click="goRegister()">注册</button>
+
+	<div class="check-box">
+		<input type="checkbox" checked="true" id="submit" />
+		<label for="submit">同意《<a href="#"  style="color:#d43048 ;">夺宝用户协议</a>》</label>
+
+	</div>
+
+</div>

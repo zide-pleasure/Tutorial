@@ -1,0 +1,100 @@
+<!--
+购物车页面
+by youjie
+-->
+<style type="text/css">
+	html,
+	body,
+	.mui-content {
+		height: 0px;
+		margin: 0px;
+		background-color: #efeff4;
+	}
+	h5.mui-content-padded {
+		margin-left: 0px !important;
+		margin-top: 20px !important;
+	}
+	.mui-card {
+		margin: 0px;
+	}
+	.mui-btn-negative, .mui-btn-danger, .mui-btn-red
+	{
+    color: #fff;
+    border: 1px solid #D43047;
+    background-color: #D43047;
+    width: 80%;
+	}
+	.mui-checkbox input[type=checkbox]:checked:before,.mui-radio input[type=radio]:checked:before {
+	color:#D43047
+	}
+</style>
+	<div class="mui-content">
+		 <ul class="mui-table-view" ng-show="shopCarlist">
+            <li class="mui-table-view-cell " style="list-style-type: none;height: 42px;border-bottom: 8px solid #F0F0F0;">
+            		<div ng-click="checkAll()"  class="mui-input-row mui-checkbox mui-left left" style="margin-top: -5px;margin-left: -5px;">
+            			<input  ng-model="checkAlls" type="checkbox" name="checkbox" id="checkbox" value="" />
+            			<label  style="text-align: center;font-size: 15px;margin-left: 2px;font-weight: bold;">全部</label>
+            		</div>
+            </li>
+            <li  class="mui-table-view-cell " style="list-style-type: none;height: 88px;border-bottom: 8px solid #F0F0F0;" ng-repeat="shopCar in shopCars">
+            		<div ng-click="removeItems($index)" class="mui-slider-right mui-disabled" >
+					<a class="mui-btn mui-btn-red">删除</a>
+				</div>
+				<div class="mui-slider-handle">
+            		<div ng-click="checkOne($index)" class="mui-input-row mui-checkbox mui-left left" style="margin-top: 15px;margin-left: -5px;float: left;width: 10%;">
+            			<input ng-model="shopCar.whether" type="checkbox" name="checkbox" id="checkbox" value="" />
+            			<label style="text-align: center;font-size: 15px;"></label>
+            		</div>
+            		<div style="float: left;width: 30%;margin-left: 5px;">
+            			<img ng-src="{{shopCar.imgUrl}}" style="height: 60px;width: 60px;"/>
+            		</div>
+            		<div id="" style="float: right;width: 60%;margin-left: -30px;margin-top: -8px;">
+            			<span id="" style="font-size: 14px;margin-left: -10px;white-space:nowrap; ">
+            				{{shopCar.goodsName}}
+            			</span><br />
+            			<span id="" style="font-size: 12px;margin-left: -10px;white-space:nowrap; ">
+            				总需：{{shopCar.tatleNum}}<span>&nbsp;&nbsp;剩余{{shopCar.othersNum}}人次</span>
+            			</span>
+            			<div class="mui-content-padded" style="margin-top: 0px;margin-left: -10px;">
+						<div class="mui-numbox" data-numbox-min='1' data-numbox-max='9' style="float:left;width: 140px;height: 25px;border: 1px solid #D43047;">
+							<button ng-click="subtract($index)" style="border-right: 1px solid #D43047;" class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+							<input ng-bind="sumPricesFn()"  value="{{shopCar.goodsNumber}}" id="test" class="mui-input-numbox" type="text"  disabled="disabled"/>
+							<button  ng-click="add($index)" style="border-left: 1px solid #D43047;" class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+						</div>
+						<div id="" style="float:right;width: 10px;height: 10px;margin-top: -6px;" >
+						<input  ng-style="shopCars.baowei" ng-click="allIn($index)" type="button" value="包尾" class="size-btn" style="text-align:center; line-height:20px; height:30px;width: 30px; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;border-radius: 20px;">
+						</div>
+					</div>
+            		</div>
+            		</div>
+            </li>
+            <li style="list-style-type: none;list-style-type: none;height: 60px;"></li>
+		</ul>
+		<footer class="mui-bar-footer mui-bar-tab" style="height: 50px;" ng-show="shopCarlist">
+		<div style="position: fixed;width: 100%;height: 50px;background-color: white;">
+			<div style="width: 60%;float: left;padding: 10px;margin-top: -5px;margin-left: 10px;">
+				<span id="" style="font-size: 14px;white-space:nowrap;">
+					总计：<span style="color: #D43047;">{{duobaobi()}}</span>夺宝币
+				</span>
+				<br />
+				<span id="" style="font-size: 14px;white-space:nowrap;">
+					共<span style="color: #D43047;">{{shoppingCar.goodsType}}</span>种商品
+				</span>
+			</div>
+			<div style="width: 30%;height:100%;background-color: #D43047;color: white;float: right;margin-top: 0px;">
+				<input ng-click="checkIn()" type="button" value="结算" class="size-btn" style="text-align:center;height:100%;width: 100%; margin:0px; padding:0px; border:0px;color: white;background-color:#D43047 ;font-weight: bold;">
+			</div>
+		</div>
+		</footer>
+		<div id=" " style="margin-top: 50%;" ng-hide="shopCarlist">
+			<div style="font-weight: bold;top: 45%;width: 50%;margin-left: 30%;" >
+				<span id="">
+					 购物车空空如也~
+				</span>
+			</div>
+			<br />
+			<div id="" style="margin-left: 18%;">
+				<button class="mui-btn-danger mui-btn-block mui-btn " ng-click="goshpping()">马上夺宝</button>
+			</div>
+		</div>
+</div>

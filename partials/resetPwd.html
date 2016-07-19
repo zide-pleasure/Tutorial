@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>找回密码完成重置密码</title>
+	</head>
+
+	<body>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+			
+			body {
+				background: #f1f1f1;
+			}
+	.faa{
+		display: flex;
+		display: -webkit-flex;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content:space-around;
+	    justify-content:space-around;
+	}
+			
+			.forgetinputList2 input {
+				border: none;
+				text-indent: 10px;
+				width: 80%;
+				line-height: 15px;
+				font-size: 15px;
+				margin-bottom: 0;
+					height: 15px;
+			}
+			
+			.forgetinputList2 input:focus {
+				outline: none;
+			}
+			
+			.forgetinputList2 li {
+				width: 100%;
+				height: 50px;
+				background: white;
+				margin-top: 3px;
+			}
+			
+			.reset-success {
+				outline: none;
+				width: 90%;
+				margin: 5% auto;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				background: #d43048;
+				font-size: 17px;
+				font-weight: 800;
+				border-radius: 8px;
+				color: #fffdff;
+				display: block;
+				padding: 0 0;
+			}
+		</style>
+		<div class="forgetContainer2">
+			<ul class="forgetinputList2">
+				<li class="faa">
+					<input id="pwd1" type="password" ng-model="user.pd1" maxlength="20" placeholder="请设置6-20位密码" />
+				</li>
+				<li class="faa">
+					<input id="pwd2" type="password" ng-model="user.pd2" maxlength="20" placeholder="再次输入确认" />
+				</li>
+			</ul>
+			<button class="reset-success" ng-click="resetComp()">完成</button>
+		</div>
+
+	</body>
+
+</html>

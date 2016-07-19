@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="mui.min.css">
+		<!--App自定义的css-->
+		<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="mui.min.js"></script>
+		<style type="text/css">
+			.bodys{
+				height: auto;
+				width: 100%;
+			}
+			.btns{
+				width: 80%;
+				margin-left: 10%;
+				margin-top: 20%;
+			}
+			.mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before
+			{
+			    color: #D43047;
+			}
+		</style>
+	</head>
+	<body class="bodys" >
+		<div class="">
+			<ul class="mui-table-view" >
+            <li class=" " style="list-style-type: none;height: 50px;">
+            		<div ng-click="checkAll()"  class="" style="white-space:nowrap;">
+            			<span  style="float: left;font-size: 20px;white-space:nowrap;margin-top: 15px;margin-left: 10px;font-weight: 550;">支付金额</span>
+            			<span  style="float: right; font-size: 20px;white-space:nowrap;margin-top: 15px;margin-right: 10px;font-weight: 550;">
+            				<span id="total" style="color: #D43047;font-weight: 400;">
+            					
+            				</span>
+            				夺宝币
+            			</label>
+            		</div>
+            </li>
+            </ul>
+            <ul class="mui-table-view" >
+			<li class=" " style="list-style-type: none;height: 60px;white-space:nowrap;">
+				<div id="" class="mui-input-row mui-checkbox">
+				<div style="float: left;">
+				<img src="img/IMG_6632.JPG" style="width: 40px;height: 36px;margin-top: 10px;margin-left: 10px;"/>
+				</div>
+     			<div class="" style="float: left;margin-top: 10px;font-size: 18px;">
+     				<span style="margin-left: 10px;color: #333;">爱贝收银台</span>
+     				<img src="img/tuijian.png" style=" width: 38px;height: 17px;margin-bottom: -2px;"/>
+     				<span style="display: block;margin-left: 10px; font-size: 12px;color: #999;">更多新用户选择，更快更安全。</span>
+					<input id="checkboxs" style="margin-top: 10px;margin-right: -10px;" name="checkbox1" value="" type="checkbox" disabled="disabled">
+     			</div>
+				</div>
+			</li>
+           </ul>
+		</div>
+		<div id="enterPay">
+		<button  type="button" class="mui-btn mui-btn-danger mui-btn-block btns" style="background-color: #D43047;border-radius: 8px;">确认支付</button>
+		</div>
+		<script type="text/javascript">
+			$("#checkboxs").attr("checked",true);
+			var state = request("state");
+			var token = request("token");
+			var amount = request("amount");
+			var cartIds = request("cartIds");
+			$("#total").text(amount);
+			if(state==1){//充值
+//				document.getElementById("enterPay").addEventListener('tap',function () {
+//				console.log("sajdlksajdjas");
+				$.post(
+					'http://42.62.53.158:8080/shop/api/' + 'pay/aibei/recharge',
+		        		{token:token,amount:amount,redirecturl:"quchou://chongzhichenggong",cpurl:"http://shibai"},
+		        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("支付返回的参数："+JSON.stringify(data));
+	        			var sign=data.data.sign;
+	        			var transdata=data.data.transdata;
+	        			var transid=data.data.transid;
+	        			var urls=data.data.url;
+//					console.log("sign的值："+sign+"，transdata的值："+transdata+"，transid的值："+transid)	;
+//					window.location.href='https://web.iapppay.com/h5/exbegpay?transdata='
+//										+transdata
+//										+'&sign='
+//										+sign
+//										+'&signtype=RSA';//支付页面
+					window.location.href=urls;
+		        		}
+				);
+			}
+			if(state==2){//付款
+				$.post(
+					'http://42.62.53.158:8080/shop/api/' + 'pay/aibei/goods/buy',
+		        		{token:token,cartIds:cartIds,redirecturl:"quchou://goumaichenggong",cpurl:"http://shibai"},
+		        		function(data){
+	        			var data = $.parseJSON(data);
+	        			console.log("支付返回的参数："+JSON.stringify(data));
+	        			var sign=data.data.sign;
+	        			var transdata=data.data.transdata;
+	        			var transid=data.data.transid;
+	        			var urls=data.data.url;
+					window.location.href=urls;
+		        		}
+				);
+			}
+			  
+			function request(paras){ 
+					    var url = location.href; 
+					    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&"); 
+					    var paraObj = {} 
+					    for (i=0; j=paraString[i]; i++){ 
+					    	paraObj[j.substring(0,j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=")+1,j.length); 
+					    } 
+					    var returnValue = paraObj[paras.toLowerCase()]; 
+					    if(typeof(returnValue)=="undefined"){ 
+					    	return ""; 
+					    }else{ 
+					    	return returnValue; 
+					    } 
+					}
+			  
+			  
+			  
+			  
+		</script>
+	</body>
+</html>
